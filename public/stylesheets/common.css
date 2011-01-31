@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body {
+    text-align: center;
+}
+
+
+div#container {
+    margin: auto;
+    width: 900px;
+    text-align: left;
+}
+
+div#header {
+    height: 100px;
+    border: 1px solid;
+}
+
+div#menu {
+    float: left;
+    width: 200px;
+}
+
+div#content {
+    margin-left: 210px;
+    width: 500px;
+}
+
+/*
+ * elements
+ */
+
+h1 {
+    margin: 0.5em 16px;
+    font-weight: normal;
+    font-size: 140%;
+}    
+
+h2 {
+    margin: 0.5em 16px;
+    border-bottom: 2px solid;
+    font-size: 105%;
+}    
+
