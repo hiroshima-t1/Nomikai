@@ -8,6 +8,17 @@ require File.join(File.dirname(__FILE__), 'boot')
  require 'desert'
 
 
+if Gem::VERSION >= "1.3.6"
+  module Rails
+    class GemDependency
+      def requirement
+        r = super
+        (r == Gem::Requirement.default) ? nil : r
+      end
+    end
+  end
+end
+
 Rails::Initializer.run do |config|
   config.plugins = [:community_engine, :white_list, :all]
 config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
