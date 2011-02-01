@@ -16,7 +16,7 @@ config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
   config.gem 'authlogic'
   config.gem 'ri_cal'
   config.gem 'calendar_date_select'
-  config.gem 'aws-s3', :lib => 'aws/s3'
+  #config.gem 'aws-s3', :lib => 'aws/s3'
   config.gem 'haml', :lib => 'htmlentities'
   config.gem 'htmlentities', :lib => 'htmlentities'
   config.gem 'hpricot', :lib => 'hpricot'
