@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8">
+<!DOCTYPE html PUBLIC html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlsn="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><%= AppConfig.community_name %></title>
+<%= stylesheet_link_tag 'common' %>
+<%= render :partial => "shared/scripts_and_styles" %>
+</head>
+<div id="container">
+  <div id="header">
+  	<h1><%= link_to("ログイン画面", "/")%>
+  	<div style="font-size:12px"><%= render :partial => "shared/messages" %></div>
+  </div>
+  <div id="content">
+  	<%= yield %>
+  </div>
+</div>
+</body>
+</html>

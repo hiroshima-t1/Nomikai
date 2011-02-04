@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8">
+<!DOCTYPE html PUBLIC html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlsn="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><%= AppConfig.community_name %></title>
+<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "prototip-min" %>
+<%= stylesheet_link_tag 'common' %>
+<%= stylesheet_link_tag 'prototip'%>
+</head>
+<div id="container">
+  <div id="header">
+  	<h1><%= link_to("トップ", "/")%></h1>
+    <% if logged_in? %>
+      <%= render :partial => 'shared/user_menu' %>
+    <% end %>
+  </div>
+  <div id="menu">
+  	<h2>■メニュー</h2>
+  	<ul>
+  	  <li>飲み会
+  	    <ul>
+  	      <li>企画</li>
+  	      <li>検索</li>
+  	    </ul>
+  	  </li>
+  	  <li>ユーザー
+  	    <ul>
+  	      <li><%= link_to("検索", "/users")%></li>
+  	      <li></li>
+  	    </ul>
+  	  </li>
+  	  <li>グループ
+  	    <ul>
+  	      <li>検索</li>
+  	      <li>...</li>
+  	    </ul>
+  	  </li>
+  	</ul>
+  </div>
+  <div id="content">
+  	<%= yield %>
+  </div>
+</div>
+</body>
+</html>
