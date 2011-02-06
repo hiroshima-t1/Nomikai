@@ -33,6 +33,7 @@ config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
   config.gem 'hpricot', :lib => 'hpricot'
   config.gem 'rmagick', :lib => 'RMagick'
   config.gem 'desert', :lib => 'desert'
+  config.gem 'rack', :vesion => '1.0.1'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
