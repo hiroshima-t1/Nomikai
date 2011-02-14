@@ -20,11 +20,11 @@ div#header {
 
 div#menu {
     float: left;
-    width: 200px;
+    width: 130px;
 }
 
 div#content {
-    margin-left: 210px;
+    margin-left: 135px;
     width: 500px;
 }
 
