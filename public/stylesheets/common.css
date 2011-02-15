@@ -18,9 +18,17 @@ div#header {
     position: relative;
 }
 
-div#menu {
+div#sidebar {
     float: left;
     width: 130px;
+}
+
+div#sidebar h2 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 110px;
+    padding: 0;
 }
 
 div#content {

@@ -7,44 +7,37 @@
 <title><%= AppConfig.community_name %></title>
 <%= javascript_include_tag "prototype" %>
 <%= javascript_include_tag "prototip-min" %>
-<%= javascript_include_tag "tree" %>
+<%= javascript_include_tag "sdmenu" %>
 <%= javascript_include_tag "application" %>
 <%= stylesheet_link_tag "common" %>
 <%= stylesheet_link_tag "prototip"%>
-<%= stylesheet_link_tag "tree_menu" %>
-<style>
-
-</style>  
+<%= stylesheet_link_tag "sdmenu" %>
 </head>
 <div id="container">
   <div id="header">
-  	<h1><%= link_to("トップ", "/")%></h1>
+    <h1><%= link_to("トップ", "/")%></h1>
     <% if logged_in? %>
       <%= render :partial => 'shared/user_menu' %>
     <% end %>
   </div>
-  <div id="menu">
+  <div id="sidebar">
   	<h2>■メニュー</h2>
-    <ul id="tree_menu" class="tree">
-      <li>飲み会
-  	    <ul>
-  	      <li>企画</li>
-  	      <li>検索</li>
-  	    </ul>
-  	  </li>
-      <li>ユーザー
-        <ul>
-  	      <li><%= link_to("検索", "/users")%></li>
-  	      <li></li>
-  	    </ul>
-  	  </li>
-  	  <li>グループ
-  	    <ul>
-  	      <li>検索</li>
-  	      <li>...</li>
-  	    </ul>
-  	  </li>
-  	</ul>
+    <div id="menu" class="sdmenu">
+      <div>
+        <span>飲み会</span>
+        <a href="/">企画</a>
+        <a href="/">検索</a>
+      </div>
+      <div>
+        <span>ユーザー</span>
+        <%= link_to("検索", "/users")%>
+      </div>
+      <div>
+        <span>グループ</span>
+        <a href="/">検索</a>
+        <a href="/">...</a>
+      </div>
+    </div>
   </div>
   <div id="content">
   	<%= yield %>
