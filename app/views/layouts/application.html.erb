@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title><%= AppConfig.community_name %></title>
+<%= stylesheet_link_tag "common" %>
+<%= stylesheet_link_tag "prototip"%>
+<%= stylesheet_link_tag "sdmenu" %>
 <%= javascript_include_tag "prototype" %>
 <%= javascript_include_tag "prototip-min" %>
 <%= javascript_include_tag "sdmenu" %>
 <%= javascript_include_tag "application" %>
-<%= stylesheet_link_tag "common" %>
-<%= stylesheet_link_tag "prototip"%>
-<%= stylesheet_link_tag "sdmenu" %>
 </head>
 <body>
 <div id="container">
@@ -43,7 +43,7 @@
     </div>
   </div>
   <div id="content">
-  	<%= yield %>
+    <%= yield %>
   </div>
 </div>
 </body>

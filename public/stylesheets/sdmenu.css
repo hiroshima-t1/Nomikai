@@ -28,7 +28,6 @@ div.sdmenu div a {
 	background: #fff;
 	display: block;
 	border-bottom: 1px solid #ddd;
-	color: #066;
 }
 div.sdmenu div a.current {
 	background : #eee;
