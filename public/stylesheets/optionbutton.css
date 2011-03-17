@@ -1,0 +1,46 @@
+/* radioボタン自体は非表示 */
+div.radio input[type="radio"] {
+  display: none;
+  padding: 0px;
+  margin: 0px;
+}
+/* ラベルの設定 */
+div.radio label {
+  width: 110px;
+  height: 31px;
+  text-align: center;
+  color: #808080;
+  font-size: 26px;
+  line-height: 26px;
+  padding: 5px 0px 0px 0px;
+  display: inline-block; /* インラインブロック要素にする */
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+div.radio label.left {
+  background: url("/images/opt_left.png") top right no-repeat;
+}
+div.radio label.middle {
+  background: url("/images/opt_middle.png") top right no-repeat;
+}
+div.radio label.right {
+  background: url("/images/opt_right.png") top right no-repeat;
+}
+
+/* 非選択側マウスホバー時の設定 */
+div.radio input:not(:checked) + label:hover {
+  background-position: top center;
+  color: #999999;
+  cursor: pointer;
+}
+/* 非選択側クリック時の設定 */
+div.radio input:not(:checked) + label:active {
+  background-position: bottom center;
+}
+/* 選択側のスタイル */
+div.radio input:checked + label {
+  background-position: top left;
+  color: #4d4d4d;
+}

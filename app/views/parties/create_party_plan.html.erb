@@ -1,0 +1,397 @@
+<style type="text/css">
+<!--
+
+html * {
+  font-family: meiryo, arial, "MS Gothic", "Gothic";
+}
+
+div.main {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+div.page_title {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-size: 18px;
+}
+
+div.page_title img {
+  vertical-align: bottom;
+  margin-right: 10px;
+}
+
+#container_left {
+  top:65px;
+  left:30px;
+  width: 300px;
+}/* end-of container_left */
+
+#container_right {
+  top: 65px;
+  left: 350px;
+  width: 350px;
+}
+
+#party_name {
+  width: 100%;
+}
+
+#box_date td {
+  text-align: right;
+}/* end-of box_date */
+
+#box_shop {
+}/* end-of box_date */
+
+#shop_name {
+  width: 100%;
+  border: none;
+}/* end-of shop_name */
+
+#box_shop .body table {
+  font-size: 13px;
+  width: 100%;
+}/* end-of box_shop .body table */
+
+#box_shop .body .shop_info {
+  font-size: 13px;
+<% if @shop == nil -%>
+  display: none;
+<% end -%>
+}/* end-of box_shop .body .shop_info */
+
+#box_shop .body #shop_detail_area {
+  margin-top: 5px;
+}
+
+#box_shop .body .image_float_left {
+  text-align: center;
+  width: 58px;
+  float: left;
+}/* end-of box_shop .body .image_float_left */
+
+#box_shop .body .image_float_right {
+  width: 210px;
+  float: right;
+}/* end-of box_shop .body .image_float_right */
+
+#box_shop .body img {
+  border-style: none;
+  vertical-align: bottom;
+}/* end-of box_shop .body img */
+
+#box_shop .shop_button {
+  text-align: center;
+  margin-top: 5px;
+}/* end-of box_shop .shop_button */
+
+.rollover_link {
+  height: 21px;
+  width: 81px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px 0px 0px 0px;
+  margin: 0px 5px 0px 10px;
+  color: #4d4d4d;
+  display: inline-block;
+}/* end-of .rollover_link */
+
+#link_shop_search {
+  background-image: url("/images/button_blue.png");
+}/* end-of link_shop_search */
+
+#link_shop_clear {
+  background-image: url("/images/button_red.png");
+}/* end-of link_shop_clear */
+
+#box_budget {
+}/* end-of box_budget */
+
+#box_status .body {
+  text-align: center;
+}/* end-of box_status */
+
+#box_message {
+  height: 30px;
+  width: 100%;
+  border: 0px;
+  display: table;
+}
+
+#box_message .body {
+  border: 5px double #FF9900;
+  text-align: center;
+  vertical-align: middle;
+  color: #FF0000;
+  background-color: #FFFF99;
+  font-weight: bold;
+  display: table-cell;
+}/* end-of box_message .body */
+
+#scroll_area_member {
+  height: 300px;
+}/* end-of scroll_area_member */
+
+/* メンバー一覧テーブル */
+#table_member {
+  border: 1px solid #999999;
+  width: 100%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of table_member */
+
+/* TD要素 */
+#table_member td {
+  height: 36px;
+  border-top: 2px dotted #999999;
+  text-indent: 15px;
+}/* end-of table_member .member */
+
+/* グループの設定 */
+#table_member tr.member_group td {
+  background-image: url("/images/bottomshadow.png");
+  background-position: bottom left;
+  background-repeat: repeat-x;
+  background-color: #FFCCFF;
+  border-top: 1px solid #CCCCCC;
+  color: #FF0099;
+  font-weight: bold;
+  text-indent: 5px;
+  height: 31px;
+  padding-bottom: 2px;
+}/* end-of table_member .member_group */
+
+/* 一番最初に出現するグループの設定 */
+#table_member tr.member_group:first-child td {
+  border-top: 0px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of table_member tr:first_child .member_group */
+
+/* グループ単位で最初のユーザの設定 */
+#table_member tr.member_group + tr td {
+  border-top: 0px;
+  height: 32px;
+}/* end-of table_member tr.member_group + tr td */
+
+#textarea_info {
+  width:100%;
+  height: 250px;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#box_submit {
+  border: 0px;
+  text-align: center;
+}
+
+-->
+</style>
+
+<div class="main">
+
+<!-- タイトル -->
+<div class="page_title">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr valign="bottom">
+      <td><%= image_tag "beer.png" %></td>
+      <td>飲み会企画</td>
+    </tr>
+  </table>
+</div><!-- end-of .page_title -->
+
+<!-- form -->
+<% form_for :party, :url => { :action => :confirm_party_plan } do |form| %>
+
+<!-- 左側 -->
+<div class="container" id="container_left">
+
+  <!-- 飲み会名BOX -->
+  <div class="box" id="box_party_name">
+    <div class="title">名称</div>
+    <div class="body">
+      <%= form.text_field :party_name, { :id => 'party_name', :size => nil } %>
+    </div>
+  </div><!-- end-of #box_party_name -->
+
+<% unless @party.party_status == nil %>
+  <!-- 開催状況BOX -->
+  <div class="box" id="box_status">
+    <div class="title">開催状況</div>
+    <div class="body">
+  <% if @party.party_status == '0' %>
+      <div class="box" id="box_message">
+        <div class="body">この飲み会は、配信されていません</div>
+      </div><!-- end-of #box_message -->
+  <% else %>
+      <div class="radio">
+         <%= form.radio_button :party_status, '1', { :id => 'status_join', :checked => (@party.party_status == '1') } %><!--
+        --><label for="status_join" class="left">開催</label><!--
+       --><%= form.radio_button :party_status, '2', { :id => 'status_cancel', :checked => (@party.party_status == '2') } %><!--
+        --><label for="status_cancel" class="right">中止</label>
+      </div>
+  <% end %>
+    </div>
+  </div><!-- end-of #box_status -->
+<% end %>
+
+  <!-- 日程BOX -->
+  <div class="box" id="box_date">
+    <div class="title">日程</div>
+    <div class="body">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <%= select_tag 'year',
+                           options_year(@party.opendate)
+            %>
+          </td>
+          <td>
+            <%= select_tag 'month',
+                           options_month(@party.opendate)
+            %>
+          </td>
+          <td>
+            <%= select_tag 'day',
+                           options_day(@party.opendate)
+            %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <%= select_tag 'hour',
+                           options_hour(@party.opendate)
+            %>
+          </td>
+          <td>
+            <%= select_tag 'minute',
+                           options_minute(@party.opendate)
+            %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div><!-- end-of #box_date -->
+
+  <!-- お店選択BOX -->
+  <div class="box" id="box_shop">
+    <div class="title">お店</div>
+    <div class="body">
+      <div class="shop_info">
+        <div id="shop_info_name"><%=h @shop == nil ? "" : @shop.name %></div>
+        <div id="shop_detail_area">
+          <div class="image_float_left">
+            <a href="<%=h @shop == nil ? "" : @shop.urls.pc %>"><%= image_tag @shop == nil ? "" : @shop.photo.pc.s, :id => "shop_image_s" %></a><br />
+            <a href="<%=h @shop == nil ? "" : @shop.urls.pc %>">お店紹介</a>
+          </div>
+          <div class="image_float_right">
+            <div class="sub_title">住所</div>
+            <div id="shop_info_address"><%=h @shop == nil ? "" : @shop.address %></div>
+            <div class="sub_title">電話番号</div>
+            <div id="shop_info_tel">086-123-4567</div>
+          </div>
+          <br style="clear: both; font-size: 0px;" />
+          <div class="image_credit">【画像提供：ホットペッパー　FooMoo】</div>
+        </div>
+      </div>
+      <div class="shop_button">
+        <a class="rollover_link" id="link_shop_search">検索</a>
+        <a class="rollover_link" id="link_shop_clear">クリア</a>
+      </div>
+
+      <input type="hidden" name="shop_id" id="shop_id" value="" />
+      <input type="hidden" name="shop_name" id="shop_name" value="" />
+      <input type="hidden" name="shop_address" id="shop_address" value="" />
+      <input type="hidden" name="shop_tel" id="shop_tel" value="" />
+    </div>
+  </div><!-- end-of #box_shop -->
+
+  <!-- 予算BOX -->
+  <div class="box" id="box_budget">
+    <div class="title">予算<%= @party.class_party.to_s %></div>
+    <div class="body">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td>
+          <%= form.text_field :due, { :style => 'width:80px;text-align:right;' } %>円
+          </td>
+          <td>
+            <%= form.select :class_party,
+                            ClassParty.all.collect { |cp| [cp.class_party_name, cp.id] },
+                            :selected => (@party.class_party == nil ? 1 : @party.class_party.id)
+            %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div><!-- end-of #box_budget -->
+
+</div><!-- end-of #container_left -->
+
+<!-- 右側 -->
+<div class="container" id="container_right">
+
+  <!-- メンバー選択BOX -->
+  <div class="box" id="box_member">
+    <div class="title">メンバー</div>
+    <div class="body">
+      <div class="scroll_area" id="scroll_area_member">
+        <table id="table_member" cellspacing="0" cellpadding="0">
+
+        <% for group in @party.user.groups %>
+          <tr class="member_group">
+            <td>
+              <%= check_box_tag "group_" + group.id.to_s, group.id.to_s %>
+              <label for="group_<%= group.id.to_s %>"><%= group.group_name %></label>
+            </td>
+          </tr>
+
+          <% for assign in group.assigns %>
+            <tr>
+              <td>
+                <input type="checkbox" name="member_<%= assign.user_id %>" id="member_<%= assign.user_id %>">
+                <label for="member_<%= assign.user_id %>"><%= assign.user.login %></label>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        </table>
+      </div>
+    </div>
+  </div><!-- end-of #box_member -->
+
+  <!-- 案内メールBOX -->
+  <div class="box" id="box_info">
+    <div class="title">案内メール</div>
+    <div class="body">
+      <%= form.text_area :notice, { :id=> 'textarea_info', :rows => nil, :cols => nil } %>
+    </div>
+  </div><!-- end-of #box_info -->
+
+  <!-- 登録ボタンBOX -->
+  <div class="box" id="box_submit">
+    <a class="rollover_link" id="link_save">保存</a>
+    <a class="rollover_link" id="link_confirm" href="confirm_party_plan.html">確認</a>
+  </div><!-- end-of #box_submit -->
+
+  <div class="webservice_credit">
+    <br />
+    <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
+  </div>
+
+
+</div><!-- end-of #container_right -->
+
+<% end %><!-- end-of form -->
+
+</div><!-- end-of .main -->

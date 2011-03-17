@@ -1,0 +1,19 @@
+.rollover_link {
+  background-image: url("/images/button_blue.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.rollover_link:hover {
+  background-position: top center;
+}
+
+.rollover_link:active {
+  background-position: top right;
+}

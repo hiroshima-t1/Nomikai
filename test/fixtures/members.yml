@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+data1:
+  id: 1
+  user_id: 1
+  party_id: 1
+  member_status: 1
+
+data2:
+  id: 2
+  user_id: 1
+  party_id: 2
+  member_status: 0
+
+data3:
+  id: 3
+  user_id: 1
+  party_id: 3
+  member_status: 2

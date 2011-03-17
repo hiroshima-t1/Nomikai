@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+data1:
+  id: 1
+  group_id: 1
+  group_name: "IT研究会　お酒チーム"
+  upd_user_id: 1
+
+data2:
+  id: 2
+  group_id: 2
+  group_name: "ＩＴ研究会　カクテルチーム"
+  upd_user_id: 1

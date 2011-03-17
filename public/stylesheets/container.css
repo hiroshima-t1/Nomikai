@@ -1,0 +1,59 @@
+div.container {
+  position: absolute;
+}/* end-of div.container */
+
+div.container div.box {
+  margin-top: 10px;
+}/* end-of div.container div.box */
+
+div.container div.box:first-child {
+  margin-top: 0px;
+}/* end-of div.container div.box:first-child */
+
+div.box {
+  position: relative;
+  border: 2px solid #FFCCFF;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of div.box */
+
+div.box:hover {
+  border: 2px solid #FF99CC;
+}/* end-of div.box:hover */
+
+div.box div.title {
+  margin: 3px;
+  padding: 2px 5px 2px 8px;
+  background-color: #FFCCFF;
+  color: #FF0099;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of div.box div.title */
+
+div.box div.body {
+  border-top: 2px dotted #CCCCCC;
+  margin: 3px;
+  padding: 7px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of div.box div.body */
+
+div.scroll_area {
+  overflow: auto;
+}/* end-of div.scroll_area */
+
+div.sub_title {
+  padding: 3px 0px 2px 5px;
+  background-color: #FFCCFF;
+  color: #FF0099;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 13px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}

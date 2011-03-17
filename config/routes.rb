@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+#  map.resources :parties
+  map.resources :parties, :collection => { :create_party_plan => :get }
+
   map.routes_from_plugin :community_engine
 
   # The priority is based upon order of creation: first created -> highest priority.

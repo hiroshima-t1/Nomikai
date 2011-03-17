@@ -1,6 +1,6 @@
 class HotPepper < ActiveResource::Base
   self.site = 'http://webservice.recruit.co.jp/'
-  API_KEY = ""
+  API_KEY = "099d6d0c097270ca"
   
   def self.find_shop(params = {})
     params[:key] = API_KEY unless params.has_key?(:key)

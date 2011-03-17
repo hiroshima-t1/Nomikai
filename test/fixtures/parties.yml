@@ -1,0 +1,40 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+data1:
+  id: 1
+  party_name: "【IT研】とりあえず飲もう！会"
+  party_status: 0
+  user_id: 1
+  notice: "飲み会を開催します。\n楽しい飲み会が待ってます！\n都合が悪くても参加してください！？"
+  shop_id: "J000026307"
+  class_api: 1
+  opendate: "2011/02/16 10:00:00"
+  plan_date: "2011/02/16 19:00:00"
+  due: 3500
+  class_party: 1
+
+data2:
+  id: 2
+  party_name: "【IT研】もう一回飲んじゃえ会"
+  party_status: 1
+  user_id: 1
+  notice: "飲み会を開催します。\n楽しい飲み会が待ってます！\n都合が悪くても参加してください！？"
+  shop_id: "J000028441"
+  class_api: 1
+  opendate: "2011/02/26 9:30:00"
+  plan_date: "2011/02/26 9:30:00"
+  due: 3000
+  class_party: 1
+
+data3:
+  id: 3
+  party_name: "【IT研】飲み足りないぜ、みんな集まれ会"
+  party_status: 2
+  user_id: 1
+  notice: "飲み会を開催します。\n楽しい飲み会が待ってます！\n都合が悪くても参加してください！？"
+  shop_id: "J000684136"
+  class_api: 1
+  opendate: "2011/03/05 9:30:00"
+  plan_date: "2011/03/05 9:30:00"
+  due: 2500
+  class_party: 1

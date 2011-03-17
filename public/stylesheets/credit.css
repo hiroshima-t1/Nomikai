@@ -1,0 +1,9 @@
+div.webservice_credit {
+  text-align: right;
+}
+
+div.image_credit {
+  text-align: right;
+  font-size: 10px;
+  white-space: nowrap;
+}
