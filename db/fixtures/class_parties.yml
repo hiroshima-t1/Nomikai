@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+data1:
+  id: 1
+  class_party_name: "飲み放題込"
+
+data2:
+  id: 2
+  class_party_name: "ドリンク代込"
+
+data3:
+  id: 3
+  class_party_name: "ドリンク代別"
+
+data4:
+  id: 4
+  class_party_name: "食べ放題込"
+
+data5:
+  id: 5
+  class_party_name: "食べ飲み放題"
