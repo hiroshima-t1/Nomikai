@@ -1,0 +1,237 @@
+<% content_for :head do %>
+
+<%= stylesheet_link_tag "shop_search/shop_search" %>
+<script type="text/javascript">
+var shop_data = [];
+(function($){
+    $( function () {
+        Recruit.UI.key = '099d6d0c097270ca';
+        Recruit.UI.Base.Pulldown.first_opt_text = '-';
+
+        new HotPepper.UI.Places.Pulldown();
+        new HotPepper.UI.Genre.Pulldown();
+        new HotPepper.UI.Food.Pulldown();
+        new HotPepper.UI.Budget.Pulldown();
+        new HotPepper.UI.PartyCapacity.Pulldown();
+        new HotPepper.UI.Kodawari.Checkbox({ template:'table_4c' });
+        new HotPepper.UI.Order.Pulldown();
+
+        $( '#form-block form' ).submit( function () {
+            jsonp_request();
+            $('#tabs > ul').tabs('select', '#result');
+            return false;
+        });
+    });
+    $( function() {
+        $('#tabs > ul').tabs({ fx: { opacity: 'toggle', duration: 100  }});
+    });
+})(jQuery);
+    function jsonp_request ( start ) {
+        if( !start ) {
+            start = 1
+        }
+        var ruip = jQuery( '#rui-page' ).html( 'loading...' );
+        var ruir = jQuery( '#shop_list' ).empty();
+
+        var url = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?'
+        + 'key=' + Recruit.UI.key + '&format=jsonp&callback=?'
+        + '&start=' + start + '&'
+        + jQuery( '#form-block form' ).formSerialize();
+
+        jQuery.getJSON( url, function ( json ) {
+            shop_data = []
+            var res = json.results;
+            // error check
+            if( res.error ) {
+                ruip.html( res.error[0].message );
+                return false;
+            }
+            // auto paginate
+            var page = new Recruit.UI.Page.Simple( json );
+            page.paginate({
+                request: jsonp_request
+            });
+            // display results
+            var ol = jQuery( '<ol style="margin:0;padding:0;"></ol>' ).attr( 'start', start );
+            jQuery.each( res.shop, function () {
+                var div = document.getElementById("template").innerHTML;
+                shop_data[this.id] = this;
+                div = div.replace("@shop_id", this.id);
+                div = div.replace("@open", this.open);
+                div = div.replace("@address", this.address);
+                div = div.replace("@budget_average", this.budget.average);
+                div = div.replace("@access", this.mobile_access);
+                div = div.replace("@capacity", this.capacity);
+                div = div.replace("@catch", this['catch']);
+                div = div.replace("@genre_name", this.genre.name);
+                div = div.replace("@sub_genre_name", this.sub_genre.name);
+                div = div.replace("@shop_name", this.name);
+                div = div.replace("@photo_url", this.photo.pc.m);
+                div = div.replace("@url_pc", this.urls.pc);
+                ol.append(jQuery(div));
+            });
+            ruir.append( ol );
+        });
+    }
+</script>
+<% end %>
+<div id="tabs">
+  <ul>
+    <li>
+      <a href="#input">
+      <span>お店を検索</span>
+      </a>
+    </li>
+    <li>
+      <a href="#result">
+      <span>検索結果</span>
+      </a>
+    </li>
+  </ul>
+  <div id="input">
+    <div id="form-block">
+      <div id="form-block-inner">
+        <form action="">
+          <table id="conditions">
+            <tr>
+              <th>エリア</th>
+              <td>
+              <select id="hpp-large-service-area-sel">
+              </select>
+              <br />
+              <select id="hpp-service-area-sel">
+              </select>
+              <br />
+              <select id="hpp-middle-area-sel">
+              </select>
+              <br />
+              <select id="hpp-small-area-sel">
+              </select>
+              <br />
+              </td>
+            </tr>
+            <tr>
+              <th>キーワード</th>
+              <td>
+              <input type="text" name="keyword"/>
+              </td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td>
+              <select id="hpp-genre-sel">
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <th>料理</th>
+              <td>
+              <select id="hpp-food-sel">
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <th>予算</th>
+              <td>
+              <select id="hpp-budget-sel">
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <th>宴会収容人数</th>
+              <td>
+              <select id="hpp-party-capacity-sel">
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <th>こだわり</th>
+              <td>
+              <div id="hpp-kodawari-checkbox">
+              </div>
+              </td>
+            </tr>
+            <tr>
+              <th>並び順</th>
+              <td>
+              <select id="hpp-order-sel">
+              </select>
+              </td>
+            </tr>
+          </table>
+          <div style="text-align: right; margin:10px 40px 0 0">
+            <button class="rollover_link"  id="link_shop_search" type="submit">検索</button>
+            <button class="rollover_link"  id="link_shop_clear" type="reset">クリア</button>
+          </div>
+          <input type="hidden" name="count" value="10"/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="result">
+    <div id="result-block">
+      <div id="result-block-inner">
+        <div id="rui-page">
+        </div>
+        <div id="rui-result">
+          <div id="shop_list">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="template" style="display:none">
+  <div class="shop">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="2" class="shop_name">
+        <h4>[@genre_name] @catch</h4>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:170px">
+        <img class="shop_image" alt="" src="@photo_url" />
+        <span class="recruit_credit_tag"><%= recruit_credit_tag %></span>
+        </td>
+        <td class="shop_detail">
+        <table>
+          <tr>
+            <td colspan="2">@sub_genre_name</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+            <a href="@url_pc" target="_blank"><h4>@shop_name</h4></a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <th>アクセス：</th>
+            <td>@access</td>
+          </tr>
+          <tr>
+            <th>営業時間：</th>
+            <td>@open</td>
+          </tr>
+          <tr>
+            <th>平均予算：</th>
+            <td>@budget_average</td>
+          </tr>
+          <tr>
+            <th>総席数：</th>
+            <td>@capacity席</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: right;">
+            <a href="@url_pc" target="_blank">詳細はこちら</a>
+            <button class="rollover_link" id="link_shop_search" onclick="window.parent.onShopSelected(shop_data['@shop_id']);">選択</button>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

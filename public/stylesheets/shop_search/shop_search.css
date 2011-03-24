@@ -1,0 +1,106 @@
+    #container {
+        width:680px;
+    }
+    table#conditions {
+        border: 2px solid #FFCCFF;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        width: 650px;
+        font-size: 13px;
+    }
+    table#conditions th {
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background-color: #FFCCFF;
+        color: #FF0099;
+        width: 100px;
+    }
+    table#conditions select {
+        margin: 2px 0px;
+        width: 270px;
+    }
+    table#conditions input[type="text"] {
+        width: 270px;
+    }
+  .rollover_link {
+    height: 27px;
+    width: 81px;
+    text-align: center;
+    font-size: 16px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 5px 0px 10px;
+    color: #4d4d4d;
+    border: 0px;
+    background-color: #ffffff;  
+  }
+  #link_shop_search {
+    background-image: url("/images/button_blue.png");
+  }
+
+  #link_shop_clear {
+    background-image: url("/images/button_red.png");
+  }
+  
+    div#shop_list {
+        margin-top: 10px;
+        padding-right: 5px;
+        width: 660px;
+        height: 490px;
+        overflow: auto;
+    }
+    div.shop {
+        margin-top: 10px;
+        border: 2px solid #FFCCFF;
+        padding: 10px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        font-size: 12px;
+    }/* end-of div.party */
+    div.shop h4 {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    div.shop a {
+      text-decoration: none;
+    }
+    div.shop a:hover {
+      text-decoration: underline;
+    }
+    .shop_name {
+        height: 20px;
+    }
+    td {
+        vertical-align: top;
+    }
+    td.shop_detail p {
+        margin: 0;
+        padding: 0;
+    }
+    img.shop_image {
+        margin: 0;
+        padding: 0;
+        max-height: 120px;
+        max-width: 160px;
+    }
+    .recruit_credit_tag {
+        font-size: 10px;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .shop_detail td {
+      width: 360px;
+    }
+    .shop_detail th {
+        vertical-align: top;
+        width: 60px;
+    }
+    #rui-page {
+        margin-right: 40px;
+        text-align:right;
+    }
