@@ -9,4 +9,16 @@ class Party < ActiveRecord::Base
     ["ドリンク代別", "0"]
   ]
 
+  # 飲み会参加者全員にメール送信
+  def send_party_notification
+  	members = Member.find_all_by_party_id(self.id)
+  	members.each do |member|
+      ok = member.user != nil && member.user.email != nil
+      ok &&= yield(member) if block_given?
+      
+      if ok
+        UserNotifier.deliver_party_notification(member.user.email, member.user, self.notice)
+      end
+    end
+  end 
 end
