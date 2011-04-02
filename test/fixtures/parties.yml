@@ -11,7 +11,7 @@ data1:
   opendate: "2011/02/16 10:00:00"
   plan_date: "2011/02/16 19:00:00"
   due: 3500
-  class_party: 1
+  class_party_id: 1
 
 data2:
   id: 2
@@ -24,7 +24,7 @@ data2:
   opendate: "2011/02/26 9:30:00"
   plan_date: "2011/02/26 9:30:00"
   due: 3000
-  class_party: 1
+  class_party_id: 1
 
 data3:
   id: 3
@@ -37,4 +37,4 @@ data3:
   opendate: "2011/03/05 9:30:00"
   plan_date: "2011/03/05 9:30:00"
   due: 2500
-  class_party: 1
+  class_party_id: 1
