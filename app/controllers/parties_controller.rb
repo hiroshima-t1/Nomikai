@@ -8,11 +8,23 @@ class PartiesController < BaseController
   # GET /parties
   # GET /parties.xml
   def index
-    @user = current_user
-    @shops = []
+    @user        = current_user
+    @shops       = []
+    conditions   = {}
+    party_status = params[:party_status] || "1"
 
     # ユーザが招待されているパーティを検索
-    user_parties = Member.find_all_by_user_id(@user.id)
+    conditions[:include]       =  :party
+    conditions[:conditions]    = []
+    conditions[:conditions][0] =  "members.user_id = ?"
+    conditions[:conditions][0] << " and parties.party_status = ?"
+    conditions[:conditions][0] << " and parties.user_id = ?" if party_status == "0"
+    conditions[:conditions]    << @user.id
+    conditions[:conditions]    << party_status
+    conditions[:conditions]    << @user.id if party_status == "0"
+    user_parties = Member.find(:all,
+                               conditions)
+
     # 一覧のページ数を計算
     @pages = (user_parties.count / PARTIES_IN_PAGE).ceil
     # パラメータからページ番号を取得(nil → 1)
@@ -31,24 +43,31 @@ class PartiesController < BaseController
   def create_party_plan
     party_id = params[:id]
     @user = current_user
-    @group_members = []
+    @shop = nil
 
-    unless party_id == nil
-      @party = Party.find(party_id)
-      @shop = nil
+    if (@party = session[:party]).nil?
+      unless party_id.nil?
+        @party = Party.find(party_id,
+                            :conditions => {:user_id => @user.id},
+                            :include => [:members => :user,
+                                         :user => {:groups => {:assigns => :user}}])
 
-      unless @party.shop_id == nil
-        res = HotPepper.find_shop_by_id(@party.shop_id)
-        if res.found?
-          @shop = res.shop
-        end
+      else
+        @party = Party.new
+        @party.user_id = @user.id
+        @party.opendate = Time.new
       end
-
-    else
-      @party = Party.new
-      @party.user_id = @user.id
-      @party.opendate = Time.new
     end
+
+    unless @party.shop_id.to_s == ""
+      res = HotPepper.find_shop_by_id(@party.shop_id.to_s)
+      @shop = res.shop if res.found?
+    end
+
+#    @group_selection = @party.user.groups.inject(Array.new) do |group_selection, group|
+#      
+#      group_selection
+#    end
 
     respond_to do |format|
       format.html
@@ -58,11 +77,111 @@ class PartiesController < BaseController
   # GET /parties/party_detail
   # GET /parties/party_detail.xml
   def party_detail
-    @id = params[:id]
-    
+    if params[:id].nil?
+      redirect_to :action => :index
+      return
+    end
+
+    @user  = current_user
+    @party = Party.find(params[:id])
+    @shop  = nil
+
+    if @party.nil?
+      redirect_to :action => :index
+      return
+    end
+
+    unless @party.shop_id.to_s == ""
+      res = HotPepper.find_shop_by_id(@party.shop_id.to_s)
+      @shop = res.shop if res.found?
+    end
+
+    @member_status = @party.members.inject(Array.new(3) {|i| 0}) do |member_status, member|
+      member_status[member.member_status.to_i] += 1
+      member_status
+    end
+
+    @my_status = Member.find(:first,
+                             :conditions => {:party_id => @party.id, :user_id => @user.id}).member_status
+
     respond_to do |format|
       format.html
     end
+  end
+
+  # POST /parties/save
+  def save
+    @user = current_user
+    params[:party][:user_id] = @user.id
+    params[:assigns] << @user.id.to_s
+    @party = Party.attributes_from_params(params)
+    @party.save
+    session[:party] = nil
+
+    redirect_to :controller => :parties, :action => :create_party_plan, :id => @party.id
+  end
+
+  # POST /parties/confirm_party_plan
+  def confirm_party_plan
+    @user = current_user
+    params[:party][:user_id] = @user.id
+    params[:assigns] << @user.id.to_s
+    @party = Party.attributes_from_params(params)
+
+    unless @party.shop_id.to_s == ""
+      res = HotPepper.find_shop_by_id(@party.shop_id.to_s)
+      @shop = res.shop if res.found?
+    end
+
+    session[:party] = @party
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # POST /parties/registration_party_plan
+  def registration_party_plan
+    unless session[:party].nil?
+      @party = session[:party]
+      @party.party_status = '1' if @party.party_status == '0'
+      @party.save
+      session[:party] = nil
+    end
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # POST /parties/completed_party
+  def completed_party
+    if params[:id].nil?
+      redirect_to :action => :index
+      return
+    end
+
+    @user  = current_user
+    @party = Party.find(params[:id], :conditions => {:user_id => @user.id})
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # POST /parties/complete
+  def complete
+    if params[:id].nil?
+      redirect_to :action => :index
+      return
+    end
+
+    @user  = current_user
+    @party = Party.find(params[:id], :conditions => {:user_id => @user.id})
+    @party.party_status = '2'
+    @party.save
+
+    redirect_to :action => :party_detail, :id => @party.id
   end
 
   # GET /parties/1
@@ -136,12 +255,5 @@ class PartiesController < BaseController
       format.html { redirect_to(parties_url) }
       format.xml  { head :ok }
     end
-  end
-
-protected
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
   end
 end

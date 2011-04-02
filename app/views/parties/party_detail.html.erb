@@ -109,7 +109,7 @@ div.page_title img {
   <table border="0" cellpadding="0" cellspacing="0">
     <tr valign="bottom">
       <td><img src="/images/beer.png" /></td>
-      <td>【IT研】とりあえず飲もう！会</td>
+      <td><%=h @party.party_name %></td>
     </tr>
   </table>
 </div><!-- end-of .page_title -->
@@ -118,13 +118,13 @@ div.page_title img {
 
   <!-- お店画像 -->
   <div class="shop_image">
-    <%= image_tag "P010229699_238.jpg" %>
+    <%= image_tag @shop.nil? ? "missing_shop_l.png" : @shop.photo.pc.l %>
     <%= recruit_credit_tag %>
   </div><!-- end-of .shop_image -->
 
   <!-- 詳細ページリンク -->
   <div class="shop_link">
-    <a href="#">お店詳細ページ(Hotpepper)</a>
+    <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>">お店詳細ページ(Hotpepper)</a>
   </div><!-- end-of .shop_link -->
 
   <!-- ルート検索リンク -->
@@ -132,18 +132,26 @@ div.page_title img {
     <a href="#">ルート検索</a>
   </div><!-- end-of .shop_link -->
 
+  <% if @party.user_id.to_s == @user.id.to_s && @party.party_status != "2" %>
   <!-- 幹事メニュー -->
   <div class="box" id="box_manager">
     <div class="title">幹事メニュー</div>
     <div class="body">
       <ul>
-        <li><a href="create_party_plan.html">飲み会情報修正</a></li>
+        <li><%= link_to '飲み会情報修正', { :action => :create_party_plan, :id => @party.id } %></li>
          日付の変更・中止など
-        <li><a href="completed_party.html">飲み会完了</a></li>
+<% if @party.party_status == "1" %>
+        <li>
+          <% form_for :completed_party, :url => {:action => :completed_party, :id => @party.id}, :html => {:name => :completed_party, :method => :post} do |form| -%>
+            <%= link_to '飲み会完了', {:action => '#'}, {:onclick => 'document.completed_party.submit(); return false;' } %>
+          <% end -%>
+        </li>
          飲み会が完了した場合は<br />完了登録してください
+<% end %>
       </ul>
     </div>
   </div><!-- end-of #box_manager -->
+  <% end %>
 
 </div><!-- end-of #conteiner_left -->
 
@@ -154,47 +162,47 @@ div.page_title img {
     <table border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td class="item_title">幹事</td>
-        <td class="item_data">ユーザＡ</td>
+        <td class="item_data"><%=h @party.user.login %></td>
       </tr>
       <tr>
         <td class="item_title">日時</td>
-        <td class="item_data">2011年 2月 16日 19時 0分</td>
+        <td class="item_data"><%=h @party.opendate.strftime("%Y年 %m月 %d日 %H時 %M分") %></td>
       </tr>
       <tr>
         <td class="item_title">場所</td>
-        <td class="item_data">創作お好み　ＵＦＯＵＦＯ</td>
+        <td class="item_data"><%=h @shop.nil? ? "お店情報がありません" : @shop.name %></td>
       </tr>
       <tr>
         <td class="item_title">住所</td>
-        <td class="item_data">広島市○○区△△町1234-5</td>
+        <td class="item_data"><%=h @shop.nil? ? "お店情報がありません" : @shop.address %></td>
       </tr>
       <tr>
         <td class="item_title">予算</td>
-        <td class="item_data">3,500円 （飲み放題込）</td>
+        <td class="item_data"><%=h @party.due %>円 （<%=h @party.class_party.class_party_name %>）</td>
       </tr>
       <tr>
         <td class="item_title">参加状況</td>
-        <td class="item_data">参加 （4人中 3人参加 1人未回答）</td>
+        <td class="item_data"><%= "#{participates_type(@my_status)} （#{@party.members.count}人中 #{@member_status[1]}人参加 #{@member_status[0]}人未回答）" %></td>
       </tr>
       <tr>
         <td class="item_title">ご案内</td>
-        <td class="item_data"><pre>飲み会を開催します。
-楽しい飲み会が待ってます！
-都合が悪くても参加してください！？</pre>
+        <td class="item_data"><pre><%=h @party.notice %></pre>
         </td>
       </tr>
     </table>
   </div><!-- end-of .party_detail -->
 
+<% if @party.party_status == "1" %>
   <!-- 参加不参加回答ページリンク -->
   <div class="participation_link">
     <a href="#">参加・不参加を回答する</a>
   </div><!-- end-of .participation_link -->
-
+<% elsif @party.party_status == "2" %>
   <!-- メッセージ欄 -->
   <div class="box" id="box_message">
     <div class="body">この飲み会は完了しました</div>
   </div><!-- end-of #box_message -->
+<% end %>
 
   <div class="webservice_credit">
     <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>

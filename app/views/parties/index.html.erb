@@ -167,8 +167,8 @@ div.page_link a:hover {
 
 <script type="text/javascript">
 <!--
-function abc() {
-  alert("");
+function tab_click(tab) {
+  document.tab.submit();
 }
 //-->
 </script>
@@ -190,12 +190,14 @@ function abc() {
   <!-- 切り替えタブ -->
   <div class="party_select_tab">
     <div class="radio">
-      <%= radio_button_tag(:select_tab, '1', select_tab?('1'), { :class => 'radio', :id => 'tab_now' }) %><!--
+      <% form_for :party, :url => { :action => :index }, :html => { :method => :get, :name => :tab } do %>
+      <%= radio_button_tag(:party_status, '1', select_tab?('1'), { :class => 'radio', :id => 'tab_now', :onclick => 'tab_click(this)' }) %><!--
       --><label for="tab_now" class="left">飲み会情報</label><!--
-   --><%= radio_button_tag(:select_tab, '2', select_tab?('2'), { :class => 'radio', :id => 'tab_old' }) %><!--
+   --><%= radio_button_tag(:party_status, '2', select_tab?('2'), { :class => 'radio', :id => 'tab_old', :onclick => 'tab_click(this)' }) %><!--
       --><label for="tab_old" class="middle">過去の飲み会</label><!--
-   --><%= radio_button_tag(:select_tab, '0', select_tab?('0'), { :class => 'radio', :id => 'tab_notyet' }) %><!--
+   --><%= radio_button_tag(:party_status, '0', select_tab?('0'), { :class => 'radio', :id => 'tab_notyet', :onclick => 'tab_click(this)' }) %><!--
       --><label for="tab_notyet" class="right">未配信の飲み会</label>
+      <% end %>
     </div>
   </div><!-- end-of .party_select_tab -->
 
@@ -203,6 +205,7 @@ function abc() {
   <div class="party_list" id="party_list">
     <!-- パーティ -->
     <% for party in @parties -%>
+    <% shop = find_shop(party.shop_id) -%>
     <div class="party">
       <table border="0" cellpadding="0" cellspacing="0">
         <tr>
@@ -214,7 +217,7 @@ function abc() {
         </tr>
         <tr>
           <td class="shop_image">
-            <%= image_tag "P010229699_168.jpg" %>
+            <%= image_tag shop.nil? ? "missing_shop_m.png" : shop.photo.pc.m %>
             <%= recruit_credit_tag %>
           </td>
           <td class="detail">
@@ -229,17 +232,21 @@ function abc() {
               </tr>
               <tr>
                 <td class="item_title">場所</td>
-                <td class="item_data">創作お好み　ＵＦＯＵＦＯ</td>
+                <td class="item_data"><%=h shop.nil? ? "お店情報がありません" : shop.name %></td>
               </tr>
               <tr>
                 <td class="item_title">住所</td>
-                <td class="item_data">広島市○○区△△町1234-5</td>
+                <td class="item_data"><%=h shop.nil? ? "お店情報がありません" : shop.address %></td>
               </tr>
             </table>
           </td>
         </tr>
       </table>
     </div><!-- end-of .party -->
+    <% end -%>
+
+    <% if @parties.count == 0 -%>
+      情報がありません。
     <% end -%>
 
     <!-- ページリンク -->

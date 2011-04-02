@@ -1,15 +1,14 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD> 
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>飲み会企画 登録完了</TITLE>
 <style type="text/css">
 <!--
 
 html * {
-  margin: 0px;
-  padding: 0px;
   font-family: meiryo, arial, "MS Gothic", "Gothic";
+}
+
+div.main {
+  position: relative;
+  top: 0px;
+  left: 0px;
 }
 
 div.page_title {
@@ -32,14 +31,14 @@ div.page_body {
 
 -->
 </style>
-</HEAD>
-<BODY>
+
+<div class="main">
 
 <!-- タイトル -->
 <div class="page_title">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr valign="bottom">
-      <td><img src="image/beer.png" /></td>
+      <td><img src="/images/beer.png" /></td>
       <td>飲み会企画 登録完了</td>
     </tr>
   </table>
@@ -50,8 +49,7 @@ div.page_body {
   飲み会の登録が完了しました。<br />
   メンバーへのメール配信が完了しました。<br />
   <br />
-  <a href="party_detail.html">飲み会情報へ</a>
+  <%= link_to '飲み会情報へ', {:action => :party_detail, :id => @party.id} %>
 </div><!-- end-of .page_body -->
 
-</BODY>
-</HTML>
+</div><!-- end-of .main -->

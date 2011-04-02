@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'default' %>
+<%= stylesheet_link_tag 'lighting' %>
+<%= javascript_include_tag 'window' %>
 <style type="text/css">
 <!--
 
@@ -58,9 +61,7 @@ div.page_title img {
 
 #box_shop .body .shop_info {
   font-size: 13px;
-<% if @shop == nil -%>
-  display: none;
-<% end -%>
+<%= 'display: none;' if @shop.nil? %>
 }/* end-of box_shop .body .shop_info */
 
 #box_shop .body #shop_detail_area {
@@ -167,7 +168,7 @@ div.page_title img {
 }/* end-of table_member .member_group */
 
 /* 一番最初に出現するグループの設定 */
-#table_member tr.member_group:first-child td {
+#table_member tbody.tbody_group:first_child tr td {
   border-top: 0px;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -175,7 +176,7 @@ div.page_title img {
 }/* end-of table_member tr:first_child .member_group */
 
 /* グループ単位で最初のユーザの設定 */
-#table_member tr.member_group + tr td {
+#table_member tbody.tbody_member tr:first_child td {
   border-top: 0px;
   height: 32px;
 }/* end-of table_member tr.member_group + tr td */
@@ -197,6 +198,127 @@ div.page_title img {
 -->
 </style>
 
+<script type="text/javascript">
+<!--
+
+  var win = new Window({className: "bluelighting", title: "お店検索", top:50, left:200, 
+                        width:700, height:600, url: "/shop_search"}) ;
+
+  function to_save(obj) {
+    if(!confirm('飲み会情報を一時保存します。\nメンバーにメール配信されませんが、よろしいですか？'))
+      return false;
+
+    var party_detail = document.party_detail;
+    party_detail.action = obj.href;
+    party_detail.submit();
+    return false;
+  }
+
+  function to_confirm(obj) {
+    var party_detail = document.party_detail;
+    party_detail.action = obj.href;
+    party_detail.submit();
+    return false;
+  }
+
+  function search_shop() {
+    win.show();
+  }
+
+  function clear_shop() {
+    if ($("shop_id").value == "") {
+      return false;
+    }
+
+    if (!confirm("お店情報をクリアします。\nよろしいですか？")) {
+      return false;
+    }
+
+    $("shop_id").value = "";
+    $("shop_info_name").innerHTML = "";
+    $("shop_info_address").innerHTML = "";
+    $("shop_info_url").href = "";
+    $("shop_info").style.display = "none";
+  }
+
+  // 検索画面でお店が選択された時に呼び出される関数
+  // 引数は選択されたお店のデータ
+  // shop.id         <- 店舗ID
+  // shop.photo.pc.l <- 店舗トップ写真(大）画像URL
+  // という感じでデータを取得できます。
+  // 取得できるデータはこちらを参照してください。
+  // http://webservice.recruit.co.jp/hotpepper/reference.htmlのグルメサーチAPIレスポンスフィールド
+  function onShopSelected(shop) { 
+    $('shop_id').value = shop.id;
+    $('shop_info_name').innerHTML = shop.name;
+    $('shop_info_address').innerHTML = shop.address;
+    $('shop_info_url').href = shop.urls.pc;
+    $('shop_image_s').src = shop.photo.pc.s;
+    $("shop_info").style.display = "block";
+    
+    win.close();
+  }
+
+  function isGroupAllMemberSelection(groupName) {
+    var rows = $(groupName).childNodes;
+    var length = rows.length;
+    var cols = null;
+    var elems = null;
+
+    for (var i = 0; i < length; i++) {
+      if (rows[i].nodeName.toUpperCase() == "TR") {
+        cols = rows[i].childNodes;
+        for (var j = 0; j < cols.length; j++) {
+          if (cols[j].nodeName.toUpperCase() == "TD") {
+            elems = cols[j].childNodes;
+            for (var k = 0; k < elems.length; k++) {
+              if (elems[k].nodeName.toUpperCase() == "INPUT") {
+                if (elems[k].type.toUpperCase() == "CHECKBOX") {
+                  if (!elems[k].checked) {
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  function onGroupClick(obj) {
+    var rows = $(obj.name + "_members").childNodes;
+    var length = rows.length;
+    var cols = null;
+    var elems = null;
+
+    for (var i = 0; i < length; i++) {
+      if (rows[i].nodeName.toUpperCase() == "TR") {
+        cols = rows[i].childNodes;
+        for (var j = 0; j < cols.length; j++) {
+          if (cols[j].nodeName.toUpperCase() == "TD") {
+            elems = cols[j].childNodes;
+            for (var k = 0; k < elems.length; k++) {
+              if (elems[k].nodeName.toUpperCase() == "INPUT") {
+                if (elems[k].type.toUpperCase() == "CHECKBOX") {
+                  elems[k].checked = obj.checked;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function onMemberClick(obj, groupName) {
+    $(groupName).checked = isGroupAllMemberSelection(groupName + "_members");
+  }
+
+//-->
+</script>
+
 <div class="main">
 
 <!-- タイトル -->
@@ -210,7 +332,7 @@ div.page_title img {
 </div><!-- end-of .page_title -->
 
 <!-- form -->
-<% form_for :party, :url => { :action => :confirm_party_plan } do |form| %>
+<% form_for @party, :url => {:action => :confirm_party_plan, :id => @party.id}, :html => {:name => :party_detail} do |form| %>
 
 <!-- 左側 -->
 <div class="container" id="container_left">
@@ -230,7 +352,7 @@ div.page_title img {
     <div class="body">
   <% if @party.party_status == '0' %>
       <div class="box" id="box_message">
-        <div class="body">この飲み会は、配信されていません</div>
+        <div class="body">まだ配信されていません</div>
       </div><!-- end-of #box_message -->
   <% else %>
       <div class="radio">
@@ -286,48 +408,42 @@ div.page_title img {
   <div class="box" id="box_shop">
     <div class="title">お店</div>
     <div class="body">
-      <div class="shop_info">
-        <div id="shop_info_name"><%=h @shop == nil ? "" : @shop.name %></div>
+      <div class="shop_info" id="shop_info">
+        <div id="shop_info_name"><%=h @shop.nil? ? "" : @shop.name %></div>
         <div id="shop_detail_area">
           <div class="image_float_left">
-            <a href="<%=h @shop == nil ? "" : @shop.urls.pc %>"><%= image_tag @shop == nil ? "" : @shop.photo.pc.s, :id => "shop_image_s" %></a><br />
-            <a href="<%=h @shop == nil ? "" : @shop.urls.pc %>">お店紹介</a>
+            <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank" id="shop_info_url"><%= image_tag @shop.nil? ? "" : @shop.photo.pc.s, :id => "shop_image_s" %><br />お店紹介</a>
           </div>
           <div class="image_float_right">
             <div class="sub_title">住所</div>
-            <div id="shop_info_address"><%=h @shop == nil ? "" : @shop.address %></div>
-            <div class="sub_title">電話番号</div>
-            <div id="shop_info_tel">086-123-4567</div>
+            <div id="shop_info_address"><%=h @shop.nil? ? "" : @shop.address %></div>
           </div>
           <br style="clear: both; font-size: 0px;" />
           <div class="image_credit">【画像提供：ホットペッパー　FooMoo】</div>
         </div>
       </div>
       <div class="shop_button">
-        <a class="rollover_link" id="link_shop_search">検索</a>
-        <a class="rollover_link" id="link_shop_clear">クリア</a>
+        <a class="rollover_link" id="link_shop_search" onclick="search_shop();">検索</a>
+        <a class="rollover_link" id="link_shop_clear" onclick="clear_shop();">クリア</a>
       </div>
 
-      <input type="hidden" name="shop_id" id="shop_id" value="" />
-      <input type="hidden" name="shop_name" id="shop_name" value="" />
-      <input type="hidden" name="shop_address" id="shop_address" value="" />
-      <input type="hidden" name="shop_tel" id="shop_tel" value="" />
+      <%= form.hidden_field :shop_id, {:value => @party.shop_id, :id => :shop_id} %>
     </div>
   </div><!-- end-of #box_shop -->
 
   <!-- 予算BOX -->
   <div class="box" id="box_budget">
-    <div class="title">予算<%= @party.class_party.to_s %></div>
+    <div class="title">予算</div>
     <div class="body">
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
           <td>
-          <%= form.text_field :due, { :style => 'width:80px;text-align:right;' } %>円
+            <%= form.text_field :due, { :style => 'width:80px;text-align:right;' } %>円
           </td>
           <td>
-            <%= form.select :class_party,
+            <%= form.select :class_party_id,
                             ClassParty.all.collect { |cp| [cp.class_party_name, cp.id] },
-                            :selected => (@party.class_party == nil ? 1 : @party.class_party.id)
+                            :selected => @party.class_party_id
             %>
           </td>
         </tr>
@@ -348,23 +464,24 @@ div.page_title img {
         <table id="table_member" cellspacing="0" cellpadding="0">
 
         <% for group in @party.user.groups %>
+          <tbody class="tbody_group">
           <tr class="member_group">
             <td>
-              <%= check_box_tag "group_" + group.id.to_s, group.id.to_s %>
+              <%= check_box_tag "group_" + group.id.to_s, group.id.to_s, false, {:onclick => 'onGroupClick(this);'} %>
               <label for="group_<%= group.id.to_s %>"><%= group.group_name %></label>
             </td>
           </tr>
-
+          </tbody>
+          <tbody id='<%= "group_" + group.id.to_s + "_members" %>' class="tbody_member">
           <% for assign in group.assigns %>
             <tr>
               <td>
-                <input type="checkbox" name="member_<%= assign.user_id %>" id="member_<%= assign.user_id %>">
-                <label for="member_<%= assign.user_id %>"><%= assign.user.login %></label>
+                <%= member_check_box_tag group, assign, {:onclick => "onMemberClick(this, 'group_#{group.id.to_s}');"} %>
               </td>
             </tr>
-          <% end %>
+          <% end -%>
+          </tbody>
         <% end %>
-
         </table>
       </div>
     </div>
@@ -380,13 +497,14 @@ div.page_title img {
 
   <!-- 登録ボタンBOX -->
   <div class="box" id="box_submit">
-    <a class="rollover_link" id="link_save">保存</a>
-    <a class="rollover_link" id="link_confirm" href="confirm_party_plan.html">確認</a>
+    <a class="rollover_link" id="link_save" href="/parties/save/<%= @party.id %>" onclick="return to_save(this)">保存</a>
+    <a class="rollover_link" id="link_confirm" href="/parties/confirm_party_plan/<%= @party.id %>" onclick="return to_confirm(this)">確認</a>
   </div><!-- end-of #box_submit -->
 
   <div class="webservice_credit">
-    <br />
+    <br /><br />
     <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
+    <br /><br />
   </div>
 
 

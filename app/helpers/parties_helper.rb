@@ -3,8 +3,12 @@ module PartiesHelper
     return Member::PARTICIPATES[participates.to_i]
   end
 
+  def participates_type(participates)
+    return Member::PARTICIPATES_TYPE[participates.to_i]
+  end
+
   def select_tab?(tab)
-    tab_no = params[:select_tab].to_s
+    tab_no = params[:party_status].to_s
     if tab_no == '' || tab_no < '0' || tab_no > '2'
       tab_no = '1'
     end
@@ -21,12 +25,12 @@ module PartiesHelper
     end_link_tag = '</a> '
 
     # パラメータからページ番号の除去
-    if temp == nil
+    if temp.nil?
       param = ""
     else
       param = $'
       temp = /(&*)page=/ =~ param
-      unless temp == nil
+      unless temp.nil?
         param_before = $`
         /[&]/ =~ $'
         param_after = $'
@@ -72,7 +76,7 @@ module PartiesHelper
     year = Time.new.strftime("%Y").to_i
     default_year = year
 
-    unless opendate == nil
+    unless opendate.nil?
       default_year = opendate.strftime("%Y").to_i
       if default_year < year
         years << [ default_year.to_s + "年", default_year.to_s ]
@@ -89,10 +93,7 @@ module PartiesHelper
   def options_month(opendate)
     months = []
     default_month = Time.new.strftime("%m").to_i
-
-    unless opendate == nil
-      default_month = opendate.strftime("%m").to_i
-    end
+    default_month = opendate.strftime("%m").to_i unless opendate.nil?
 
     1.upto(12) do |month|
        months << [ month.to_s + "月", month.to_s ]
@@ -104,11 +105,7 @@ module PartiesHelper
   def options_day(opendate)
     days = []
     default_day = Time.new.strftime("%d").to_i
-
-    unless opendate == nil
-      default_day = opendate.strftime("%d").to_i
-      puts "**********" + opendate.to_s + "**********"
-    end
+    default_day = opendate.strftime("%d").to_i unless opendate.nil?
 
     1.upto(31) do |day|
       days << [ day.to_s + "日", day.to_s ]
@@ -120,10 +117,7 @@ module PartiesHelper
   def options_hour(opendate)
     hours = []
     default_hour = Time.new.strftime("%H").to_i
-
-    unless opendate == nil
-      default_hour = opendate.strftime("%H").to_i
-    end
+    default_hour = opendate.strftime("%H").to_i unless opendate.nil?
 
     0.upto(23) do |hour|
       hours << [ hour.to_s + "時", hour.to_s ]
@@ -135,15 +129,42 @@ module PartiesHelper
   def options_minute(opendate)
     minutes = []
     default_minute = nil #Time.new.strftime("%M").to_i
-
-    unless opendate == nil
-      default_minute = opendate.strftime("%M").to_i
-    end
+    default_minute = opendate.strftime("%M").to_i unless opendate.nil?
 
     0.step(55, 5) do |minute|
       minutes << [ minute.to_s + "分", minute.to_s ]
     end
 
     options_for_select minutes, default_minute.to_s
+  end
+
+  def member_check_box_tag(group, assign, options = {})
+    input_tag = "<input type='checkbox' name='assigns[]' id='group_%s_assign_%s' value='%s' %s>"
+    label_tag = "<label for='group_%s_assign_%s'>%s</label>"
+
+    party_member = @party.members.select{|member| member.user_id == assign.user_id}[0]
+    option = ("checked='checked'" unless party_member.nil?) || ""
+
+    options.each_pair do |key, value|
+      option << " #{key}=\"#{value}\""
+    end
+
+    tag = ""
+    tag << input_tag % [group.id, assign.user_id, assign.user_id, option]
+    tag << label_tag % [group.id, assign.user_id, assign.user.login]
+    tag
+  end
+
+  def party_status_char(party_status)
+    return Party::PARTY_STATUS_TYPE[party_status.to_i][0]
+  end
+
+  def find_shop(shop_id = nil)
+    shop = nil
+    unless shop_id.to_s == ""
+      res = HotPepper.find_shop_by_id(shop_id.to_s)
+      shop = res.shop if res.found?
+    end
+    shop
   end
 end

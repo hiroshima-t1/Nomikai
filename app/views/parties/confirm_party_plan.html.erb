@@ -1,20 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD> 
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>飲み会企画 内容確認</TITLE>
-<link rel="stylesheet" type="text/css" href="css/container.css" />
-<link rel="stylesheet" type="text/css" href="css/rolloverlink.css" />
-<link rel="stylesheet" type="text/css" href="css/optionbutton.css" />
-<link rel="stylesheet" type="text/css" href="css/credit.css" />
 <style type="text/css">
 <!--
 
 html * {
-  margin: 0px;
-  padding: 0px;
   font-family: meiryo, arial, "MS Gothic", "Gothic";
 }/* end-of body */
+
+div.main {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
 
 div.page_title {
   position: absolute;
@@ -125,21 +120,27 @@ div.container {
   display: inline-block;
 }/* end-of .rollover_link */
 
-
 #link_back {
-  background-image: url("image/button_red.png");
+  background-image: url("/images/button_red.png");
 }/* end-of link_back */
+
+.new_party {
+  display: inline-block;
+}
+.edit_party {
+  display: inline-block;
+}
 
 -->
 </style>
-</HEAD>
-<BODY>
+
+<div class="main">
 
 <!-- タイトル -->
 <div class="page_title">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr valign="bottom">
-      <td><img src="image/beer.png" /></td>
+      <td><img src="/images/beer.png" /></td>
       <td>飲み会企画 内容確認</td>
     </tr>
   </table>
@@ -151,7 +152,7 @@ div.container {
   <div class="box" id="box_party_name">
     <div class="title">名称</div>
     <div class="body">
-      【IT研】とりあえず飲もう！会
+      <%=h @party.party_name %>
     </div>
   </div><!-- end-of #box_party_name -->
 
@@ -159,7 +160,7 @@ div.container {
   <div class="box" id="box_status">
     <div class="title">開催状況</div>
     <div class="body">
-      開催
+      <%=h party_status_char @party.party_status %>
     </div>
   </div><!-- end-of #box_status -->
 
@@ -167,7 +168,7 @@ div.container {
   <div class="box" id="box_date">
     <div class="title">日程</div>
     <div class="body">
-      2011年 2月 16日 19時 0分
+      <%=h @party.opendate.strftime("%Y年 %m月 %d日 %H時 %M分") %>
     </div>
   </div><!-- end-of #box_date -->
 
@@ -176,17 +177,15 @@ div.container {
     <div class="title">お店</div>
     <div class="body">
       <div class="shop_info">
-        <div id="shop_info_name">どこかのお店　あああああああああああああああああああああああああああ</div>
+        <div id="shop_info_name"><%=h @shop.nil? ? "" : @shop.name %></div>
         <div id="shop_detail_area">
           <div class="image_float_left">
-            <a href="#"><img src="image/P010229699_58_s.jpg" id="shop_image_s" /></a><br />
-            <a href="#">お店紹介</a>
+            <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank"><img src="<%=h @shop.nil? ? "" : @shop.photo.pc.s %>" id="shop_image_s" /></a><br />
+            <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank">お店紹介</a>
           </div>
           <div class="image_float_right">
             <div class="sub_title">住所</div>
-            <div id="shop_info_address">広島県広島市○○区△△町１２-３４ □□ビル５Ｆ　あああああああああああああああああああああああああああああああああああ</div>
-            <div class="sub_title">電話番号</div>
-            <div id="shop_info_tel">086-123-4567</div>
+            <div id="shop_info_address"><%=h @shop.nil? ? "" : @shop.address %></div>
           </div>
           <br style="clear: both; font-size: 0px;" />
           <div class="image_credit">【画像提供：ホットペッパー　FooMoo】</div>
@@ -199,7 +198,7 @@ div.container {
   <div class="box" id="box_budget">
     <div class="title">予算</div>
     <div class="body">
-      3,500円　飲み放題込
+      <%=h @party.due %>円　（<%=h @party.class_party.class_party_name %>）
     </div>
   </div><!-- end-of #box_budget -->
 
@@ -208,9 +207,9 @@ div.container {
     <div class="title">メンバー</div>
     <div class="body">
       <table border="0" cellspacing="0" cellpadding="0">
-        <tr><td>ユーザＡ</td></tr>
-        <tr><td>ユーザＢ</td></tr>
-        <tr><td>ユーザＣ</td></tr>
+        <% for member in @party.members -%>
+        <tr><td><%=h member.user.login %></td></tr>
+        <% end -%>
       </table>
     </div>
   </div><!-- end-of #box_member -->
@@ -219,9 +218,7 @@ div.container {
   <div class="box" id="box_info">
     <div class="title">案内メール</div>
     <div class="body">
-      <pre>飲み会を開催します。
-楽しい飲み会が待ってます！
-都合が悪くても参加してください！？</pre>
+      <pre><%=h @party.notice %></pre>
     </div>
   </div><!-- end-of #box_info -->
 
@@ -232,8 +229,12 @@ div.container {
 
   <!-- 登録ボタンBOX -->
   <div class="box" id="box_submit">
-    <a class="rollover_link" id="link_back" href="create_party_plan.html">戻る</a>
-    <a class="rollover_link" id="link_save" href="registration_party_plan.html">登録</a>
+    <% form_for @party, :url => {:action => :create_party_plan, :id => @party.id}, :html => {:name => :back, :method => :post} do |form| %>
+      <%= link_to '戻る', {:action => '#'}, {:class => :rollover_link, :id => :link_back, :onclick => 'document.back.submit(); return false;'} %>
+    <% end %>
+    <% form_for @party, :url => {:action => :registration_party_plan, :id => @party.id}, :html => {:name => :regist, :method => :post} do |form| %>
+      <%= link_to '登録', {:action => '#'}, {:class => :rollover_link, :id => :link_regist, :onclick => 'document.regist.submit(); return false;'} %>
+    <% end %>
   </div><!-- end-of #box_submit -->
 
   <div class="webservice_credit">
@@ -242,5 +243,4 @@ div.container {
 
 </div><!-- end-of .container -->
 
-</BODY>
-</HTML>
+</div><!-- end-of .main -->

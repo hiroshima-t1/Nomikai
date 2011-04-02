@@ -1,7 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
 #  map.resources :parties
-  map.resources :parties, :collection => { :create_party_plan => :get }
-  
+  map.resources :parties, :collection => {
+    :create_party_plan => :any,
+    :save => :post,
+    :confirm_party_plan => :post,
+    :registration_party_plan => :post,
+    :party_detail => :any,
+    :completed_party => :any,
+    :complete => :post
+  }
+
   map.connect "shop_search", :controller => "shop_search", :action => "index"
 
   map.routes_from_plugin :community_engine

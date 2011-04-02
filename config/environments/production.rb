@@ -27,4 +27,4 @@ config.action_view.cache_template_loading            = true
 # Enable threaded mode
 # config.threadsafe!
 
-APP_URL = "http://example.com"
+APP_URL = "http://localhost:3000"

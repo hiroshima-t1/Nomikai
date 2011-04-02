@@ -3,6 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   has_many :albums
   has_many :parties
+  has_many :members
   has_many :groups, :foreign_key => 'upd_user_id'
   
   MALE    = 'M'

@@ -1,0 +1,90 @@
+<style type="text/css">
+<!--
+
+html * {
+  font-family: meiryo, arial, "MS Gothic", "Gothic";
+}
+
+div.main {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+div.page_title {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-size: 18px;
+}
+
+div.page_title img {
+  vertical-align: bottom;
+  margin-right: 10px;
+}
+
+div.page_body {
+  position: absolute;
+  top: 80px;
+  left: 30px;
+}
+
+#box_submit {
+  border: 0px;
+  text-align: center;
+}
+
+.rollover_link {
+  height: 21px;
+  width: 81px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px 0px 0px 0px;
+  margin: 0px 5px 0px 10px;
+  color: #4d4d4d;
+  display: inline-block;
+}/* end-of .rollover_link */
+
+#link_back {
+  background-image: url("/images/button_red.png");
+}/* end-of link_back */
+
+.edit_party {
+  display: inline-block;
+}
+
+-->
+</style>
+
+<div class="main">
+
+<!-- タイトル -->
+<div class="page_title">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr valign="bottom">
+      <td><img src="/images/beer.png" /></td>
+      <td>飲み会 完了登録</td>
+    </tr>
+  </table>
+</div><!-- end-of .page_title -->
+
+<!-- 登録完了メッセージ -->
+<div class="page_body">
+  完了した飲み会情報は、再度編集することは出来ません。<br />
+  完了登録しますか？<br />
+  <br />
+
+  <!-- 登録ボタンBOX -->
+  <div class="box" id="box_submit">
+    <% form_for @party, :url => {:action => :party_detail, :id => @party.id}, :html => {:name => :back, :method => :post} do |form| %>
+      <%= link_to '戻る', {:action => '#'}, {:class => :rollover_link, :id => :link_back, :onclick => 'document.back.submit(); return false;'} %>
+    <% end %>
+    <% form_for @party, :url => {:action => :complete, :id => @party.id}, :html => {:name => :complete, :method => :post} do |form| %>
+      <%= link_to '完了', {:action => '#'}, {:class => :rollover_link, :id => :link_regist, :onclick => 'document.complete.submit(); return false;'} %>
+    <% end %>
+  </div><!-- end-of #box_submit -->
+
+</div><!-- end-of .page_body -->
+
+</div><!-- end-of .main -->
