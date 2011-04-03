@@ -1,0 +1,233 @@
+<style type="text/css">
+<!--
+
+html * {
+  font-family: meiryo, arial, "MS Gothic", "Gothic";
+}
+
+div.main {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+div.page_title {
+/*  position: absolute; */
+  top: 15px;
+  left: 30px;
+  font-size: 18px;
+}
+
+div.page_title img {
+  vertical-align: bottom;
+  margin-right: 10px;
+}
+
+#container_left {
+  top:65px;
+  left:30px;
+  width: 300px;
+}/* end-of container_left */
+
+#container_right {
+  top: 65px;
+  left: 350px;
+  width: 350px;
+}
+
+#party_name {
+  width: 100%;
+}
+
+#box_date td {
+  text-align: right;
+}/* end-of box_date */
+
+#box_shop {
+}/* end-of box_date */
+
+#shop_name {
+  width: 100%;
+  border: none;
+}/* end-of shop_name */
+
+#box_shop .body table {
+  font-size: 13px;
+  width: 100%;
+}/* end-of box_shop .body table */
+
+#box_shop .body .shop_info {
+  font-size: 13px;
+<% if @shop == nil -%>
+  display: none;
+<% end -%>
+}/* end-of box_shop .body .shop_info */
+
+#box_shop .body #shop_detail_area {
+  margin-top: 5px;
+}
+
+#box_shop .body .image_float_left {
+  text-align: center;
+  width: 58px;
+  float: left;
+}/* end-of box_shop .body .image_float_left */
+
+#box_shop .body .image_float_right {
+  width: 210px;
+  float: right;
+}/* end-of box_shop .body .image_float_right */
+
+#box_shop .body img {
+  border-style: none;
+  vertical-align: bottom;
+}/* end-of box_shop .body img */
+
+#box_shop .shop_button {
+  text-align: center;
+  margin-top: 5px;
+}/* end-of box_shop .shop_button */
+
+.rollover_link {
+  height: 21px;
+  width: 81px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px 0px 0px 0px;
+  margin: 0px 5px 0px 10px;
+  color: #4d4d4d;
+  display: inline-block;
+}/* end-of .rollover_link */
+
+#link_shop_search {
+  background-image: url("/images/button_blue.png");
+}/* end-of link_shop_search */
+
+#link_shop_clear {
+  background-image: url("/images/button_red.png");
+}/* end-of link_shop_clear */
+
+#box_budget {
+}/* end-of box_budget */
+
+#box_status .body {
+  text-align: center;
+}/* end-of box_status */
+
+#box_message {
+  height: 30px;
+  width: 100%;
+  border: 0px;
+  display: table;
+}
+
+#box_message .body {
+  border: 5px double #FF9900;
+  text-align: center;
+  vertical-align: middle;
+  color: #FF0000;
+  background-color: #FFFF99;
+  font-weight: bold;
+  display: table-cell;
+}/* end-of box_message .body */
+
+#scroll_area_member {
+  height: 300px;
+}/* end-of scroll_area_member */
+
+/* メンバー一覧テーブル */
+#table_member {
+  border: 1px solid #999999;
+  width: 100%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of table_member */
+
+/* TD要素 */
+#table_member td {
+  height: 36px;
+  border-top: 2px dotted #999999;
+  text-indent: 15px;
+}/* end-of table_member .member */
+
+/* グループの設定 */
+#table_member tr.member_group td {
+  background-image: url("/images/bottomshadow.png");
+  background-position: bottom left;
+  background-repeat: repeat-x;
+  background-color: #FFCCFF;
+  border-top: 1px solid #CCCCCC;
+  color: #FF0099;
+  font-weight: bold;
+  text-indent: 5px;
+  height: 31px;
+  padding-bottom: 2px;
+}/* end-of table_member .member_group */
+
+/* 一番最初に出現するグループの設定 */
+#table_member tr.member_group:first-child td {
+  border-top: 0px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}/* end-of table_member tr:first_child .member_group */
+
+/* グループ単位で最初のユーザの設定 */
+#table_member tr.member_group + tr td {
+  border-top: 0px;
+  height: 32px;
+}/* end-of table_member tr.member_group + tr td */
+
+#textarea_info {
+  width:100%;
+  height: 250px;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#box_submit {
+  border: 0px;
+  text-align: center;
+}
+
+-->
+</style>
+
+<div class="main">
+
+  <!-- タイトル -->
+<div class="page_title">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr valign="bottom">
+      <td>グループ作成</td>
+    </tr>
+  </table>
+</div><!-- end-of .page_title -->
+
+<% form_for(@group) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :group_id %><br />
+    <%= f.text_field :group_id %>
+  </p>
+  <p>
+    <%= f.label :group_name %><br />
+    <%= f.text_field :group_name %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit '作成' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', groups_path %>
+
+</div>

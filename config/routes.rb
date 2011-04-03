@@ -12,6 +12,16 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect "shop_search", :controller => "shop_search", :action => "index"
 
+  map.resources :groups, :collection => {
+    :create_groups => :any,
+    :save => :post,
+    :confirm_party_plan => :post,
+    :registration_party_plan => :post,
+    :party_detail => :any,
+    :completed_party => :any,
+    :complete => :post,
+    }
+
   map.routes_from_plugin :community_engine
 
   # The priority is based upon order of creation: first created -> highest priority.
