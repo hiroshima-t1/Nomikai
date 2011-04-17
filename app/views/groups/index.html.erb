@@ -89,6 +89,10 @@ div.party:first-child {
   margin-top: 0px;
 }/* end-of div.party:first-child */
 
+div.party:last-child {
+  margin-top: 0px;
+}/* end-of div.party:last-child */
+
 div.party:hover {
   border: 2px solid #FF99CC;
   background: url("/images/highlight.png") top left repeat-x;
@@ -193,10 +197,6 @@ function abc() {
     <div class="group">
       <table border="0" cellpadding="0" cellspacing="0" class="detail">
         <tr>
-          <td class="item_title">グループID</td>
-          <td class="item_data"><%=h group.group_id %></td>
-        </tr>
-        <tr>
           <td class="item_title">グループ名</td>
           <td class="item_data"><%=h group.group_name %></td>
         </tr>
@@ -206,14 +206,30 @@ function abc() {
         </tr>
         <tr>
           <td class="item_title">作成者</td>
-          <td class="item_data"><%=h group.upd_user_id %></td>
+          <td class="item_data"><%=h group.user.login %></td>
         </tr>
         <tr>
-          <td  class="item_title" colspan="2"><%= link_to '更新', edit_group_path(group) %></td>
+          <td  class="item_title" colspan="2">
+            <%=
+            if @user.upd_user_id == group.user.upd_user_id then
+              link_to '更新', edit_group_path(group)
+            end
+            %>
+            <%=
+            if @user.upd_user_id == group.user.upd_user_id then
+              link_to '削除', group, :confirm => 'グループを削除します。よろしいですか?', :method => :delete
+            end
+            %>
+          </td>
         </tr>
       </table>
     </div><!-- end-of .party -->
     <% end -%>
+
+        <!-- ページリンク -->
+    <div class="page_link">
+      <%= page_link_tags %>
+    </div><!-- end-of .page_link -->
 
 </div>
 

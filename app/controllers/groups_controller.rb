@@ -9,7 +9,7 @@ class GroupsController < BaseController
 
   def index
     @user = current_user
-    user_groups = Group.all
+    user_groups = Group.find(:all,:order => 'group_name asc')
 
     # 一覧のページ数を計算
     @pages = (user_groups.count / GROUOPS_IN_PAGE).ceil
@@ -41,6 +41,11 @@ class GroupsController < BaseController
   def new
     @group = Group.new
 
+    @group.group_id = @group.id
+
+    @user = current_user
+    @group.upd_user_id = @user.id
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @group }
@@ -58,11 +63,14 @@ class GroupsController < BaseController
     @group = Group.new(params[:group])
     @user = current_user
 
-    @group.user_id = @user.id
+    @group.group_id = @group.id
+    @group.upd_user_id = @user.id
     
     respond_to do |format|
       if @group.save
-        format.html { redirect_to(@group, :notice => 'Group was successfully created.') }
+        @group.group_id = @group.id
+        @group.save
+        format.html { redirect_to :action => :index }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         format.html { render :action => "new" }
@@ -78,7 +86,7 @@ class GroupsController < BaseController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to(@group, :notice => 'Group was successfully updated.') }
+        format.html { redirect_to :action => :index }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -94,7 +102,7 @@ class GroupsController < BaseController
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to(groups_url) }
+      format.html { redirect_to :action => :index } 
       format.xml  { head :ok }
     end
   end

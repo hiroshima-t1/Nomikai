@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'default' %>
+<%= stylesheet_link_tag 'lighting' %>
+<%= javascript_include_tag 'window' %>
 <style type="text/css">
 <!--
 
@@ -12,7 +15,6 @@ div.main {
 }
 
 div.page_title {
-/*  position: absolute; */
   top: 15px;
   left: 30px;
   font-size: 18px;
@@ -58,9 +60,7 @@ div.page_title img {
 
 #box_shop .body .shop_info {
   font-size: 13px;
-<% if @shop == nil -%>
-  display: none;
-<% end -%>
+<%= 'display: none;' if @shop.nil? %>
 }/* end-of box_shop .body .shop_info */
 
 #box_shop .body #shop_detail_area {
@@ -167,7 +167,7 @@ div.page_title img {
 }/* end-of table_member .member_group */
 
 /* 一番最初に出現するグループの設定 */
-#table_member tr.member_group:first-child td {
+#table_member tbody.tbody_group:first_child tr td {
   border-top: 0px;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -175,7 +175,7 @@ div.page_title img {
 }/* end-of table_member tr:first_child .member_group */
 
 /* グループ単位で最初のユーザの設定 */
-#table_member tr.member_group + tr td {
+#table_member tbody.tbody_member tr:first_child td {
   border-top: 0px;
   height: 32px;
 }/* end-of table_member tr.member_group + tr td */
@@ -197,6 +197,34 @@ div.page_title img {
 -->
 </style>
 
+<script type="text/javascript">
+<!--
+  function check() {
+    var ret = false;
+    var msg = "";
+
+    if ( document.getElementById("group_group_name").value == "" ) {
+      msg = "グループ名は入力必須です。";
+    }
+    if ( document.getElementById("group_comment").value == "" ) {
+      if ( msg != "" ) {
+        msg = msg + "\n";
+      }
+      msg = msg + "コメントは入力必須です。";
+    }
+
+    if (msg == "") {
+      document.group.submit();
+    } else {
+      alert(msg);
+    }
+    return ret;
+  }
+
+
+//-->
+</script>
+
 <div class="main">
 
   <!-- タイトル -->
@@ -208,26 +236,27 @@ div.page_title img {
   </table>
 </div><!-- end-of .page_title -->
 
-<% form_for(@group) do |f| %>
+<% form_for(@group, :html => {:name => :group}) do |f| %>
   <%= f.error_messages %>
 
+  <!-- 飲み会名BOX -->
+  <div class="box" id="box_group_name">
+    <div class="title">名称</div>
+    <div class="body">
+      <%= f.text_field :group_name %>
+    </div>
+  </div><!-- end-of #box_group_name -->
+
+  <div class="box" id="box_group_name">
+    <div class="title">コメント</div>
+    <div class="body">
+      <%= f.text_area :comment, :size=>"25x4" %>
+    </div>
+  </div><!-- end-of #box_group_name -->
+
   <p>
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </p>
-  <p>
-    <%= f.label :group_name %><br />
-    <%= f.text_field :group_name %>
-  </p>
-  <p>
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </p>
-  <p>
-    <%= f.submit '作成' %>
+    <a class="rollover_link" id="group_submit" name="commit" onclick="check();">作成</a>
   </p>
 <% end %>
-
-<%= link_to 'Back', groups_path %>
 
 </div>
