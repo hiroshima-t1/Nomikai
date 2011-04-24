@@ -1,0 +1,72 @@
+<style>  
+table#profile {
+    -moz-border-radius: 5px 5px 5px 5px;
+    border: 1px solid #999999;
+    width: 100%;
+}
+
+table#profile td {
+    border-top: 2px dotted #999999;
+    height: 36px;
+    text-indent: 15px;
+}
+
+table#profile th {
+    padding-left: 10px;
+    border-top: 2px dotted #999999;
+    width: 60px;
+}
+
+div#left {
+  padding-top: 5px;
+  float:left;
+  text-align:center;
+  width:300px;
+}
+
+div#left img {
+  border: 1px slid #99999
+}
+
+
+div#right {
+  margin-left:320px;
+  width:440px;
+}
+
+h4 {
+  display:inline;
+}
+
+</style>  
+
+<h3><%= link_to @user.display_name, user_path(@user) %></h3>
+
+<div id="left" class="box">
+  <%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid") %>
+  <div style="padding-top:10px;font-size:12px;">
+    最終ログイン:<%= time_ago_in_words @user.last_login_at  %>
+  </div>
+</div>
+
+<div id="right" class="box">
+<div class="title"><h4>プロフィール</h4></div>
+<table id="profile">
+  <tr>
+    <th>名前</th>
+    <td><%= @user.display_name %></td>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <td><%= @user.gender %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @user.adress %></td>
+  </tr>
+  <tr>
+    <th>誕生日</th>
+    <td><%= @user.birthday %></td>
+  </tr>  
+</table>  
+</div>  
