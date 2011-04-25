@@ -5,7 +5,8 @@ class Member < ActiveRecord::Base
   PARTICIPATES = [
     "mikaitou.png",
     "sanka.png",
-    "fusanka.png"
+    "fusanka.png",
+    "tyushi.png"
   ]
 
   PARTICIPATES_TYPE = [

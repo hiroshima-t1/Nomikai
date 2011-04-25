@@ -9,4 +9,14 @@ class UsersController < BaseController
     redirect_to login_path and return false unless User.find(params[:inviter_id]).valid_invite_code?(params[:inviter_code])
   end
 
+  def show
+    unless session[:original_uri].nil?
+      uri = session[:original_uri]
+      session[:original_uri] = nil
+      redirect_to(uri || {:controller => :parties, :action => :index})
+      return
+    end
+
+    redirect_to :controller => :parties, :action => :index
+  end
 end

@@ -8,15 +8,17 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title><%= AppConfig.community_name %></title>
 <%= stylesheet_link_tag 'common' %>
+<%= stylesheet_link_tag 'container', 'rolloverlink', 'optionbutton', 'credit' %>
 <%= render :partial => "shared/scripts_and_styles" %>
 <%= yield :head %>
 </head>
-<body>
+<body style="padding-top: 10px;">
 <div id="container">
-  <div id="header">
+<!--  <div id="header">
     <h1><%= link_to("ログイン画面", "/")%>
     <div style="font-size:12px"><%= render :partial => "shared/messages" %></div>
-  </div>
+  </div>-->
+  <div id="header" style="background-image:url('/images/header.png');"></div>
   <div id="content">
     <%= yield %>
   </div>

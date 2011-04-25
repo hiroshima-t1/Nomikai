@@ -4,7 +4,6 @@ body {
     text-align: center;
 }
 
-
 div#container {
     margin: auto;
     width: 950px;
@@ -20,7 +19,7 @@ div#header {
 
 div#sidebar {
     float: left;
-    width: 130px;
+    width: 150px;
 }
 
 div#sidebar h2 {
@@ -39,6 +38,9 @@ div#content {
 /*
  * header
  */
+div#header {
+    border: 2px solid #FF99CC;
+}
 div#header h1 {
     margin: 0.5em 32px;
     padding-top: 6px;
@@ -46,10 +48,19 @@ div#header h1 {
     font-size: 140%;
 }
 
+/*
 div#header #login_user  {
   position: absolute;
   right: 6px;
   top: 5px;
+}
+*/
+div#login_user {
+    height: 27px;
+    line-height: 30px;
+    padding-left: 130px;
+    padding-right: 15px;
+    background-image: url("/images/account.png");
 }
 
 /* User Menu Dropdown*/
@@ -67,5 +78,55 @@ h2 {
     font-size: 105%;
 }
 
+#main-menu {
+  padding-top: 15px;
+  width: 150px;
+}
 
+#main-menu div.body {
+  text-align: center;
+}
 
+#main-menu div.body div {
+  padding-top: 5px;
+  height: 25px;
+  line-height: 25px;
+  border-top: 1px dotted #CCCCCC;
+}
+
+#main-menu div.body div:first-child {
+  line-height: 18px;
+  padding-top: 0px;
+  height: 25px;
+  border-top: 0px;
+}
+
+#container_login {
+  position: absolute;
+  top: 20px;
+  width: 285px;
+  margin-left: -20px;
+}
+
+#container_news {
+  position: absolute;
+  top: 20px;
+  width: 400px;
+  left: 320px;
+}
+
+#container_login #link_submit {
+  height: 21px;
+  width: 81px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px 0px 0px 0px;
+  margin: 0px 5px 0px 10px;
+  color: #4d4d4d;
+  display: inline-block;
+}
+
+#container_news #box_news {
+  height: 400px;
+}

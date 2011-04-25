@@ -1,10 +1,15 @@
 module PartiesHelper
-  def participates_image(participates)
-    return Member::PARTICIPATES[participates.to_i]
+  def participates_image(party_status, participates)
+    return Member::PARTICIPATES[participates.to_i] unless party_status == "3"
+    return Member::PARTICIPATES[3]
   end
 
   def participates_type(participates)
     return Member::PARTICIPATES_TYPE[participates.to_i]
+  end
+
+  def participates_select
+    return Member::PARTICIPATES_TYPE.inject(Array.new) {|ret, val| ret[ret.size] = [val, ret.size.to_s]; ret}
   end
 
   def select_tab?(tab)
@@ -35,9 +40,9 @@ module PartiesHelper
         /[&]/ =~ $'
         param_after = $'
         param = param_before.to_s + param_after.to_s
-        param << "&" unless param == ""
       end
     end
+    param << "&" unless param.to_s == ""
     param << "page="
     url = path + "?" + param
 

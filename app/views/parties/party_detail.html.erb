@@ -39,6 +39,7 @@ div.page_title img {
   position: absolute;
   top: 80px;
   left: 30px;
+  padding-bottom: 30px;
 }
 
 #container_left .shop_image img {
@@ -56,7 +57,8 @@ div.page_title img {
 #container_right {
   top: 80px;
   left: 300px;
-  width: 400px;
+  width: 450px;
+  padding-bottom: 30px;
 }
 
 .party_detail table {
@@ -124,7 +126,7 @@ div.page_title img {
 
   <!-- 詳細ページリンク -->
   <div class="shop_link">
-    <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>">お店詳細ページ(Hotpepper)</a>
+    <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank">お店詳細ページ(Hotpepper)</a>
   </div><!-- end-of .shop_link -->
 
   <!-- ルート検索リンク -->
@@ -182,7 +184,16 @@ div.page_title img {
       </tr>
       <tr>
         <td class="item_title">参加状況</td>
-        <td class="item_data"><%= "#{participates_type(@my_status)} （#{@party.members.count}人中 #{@member_status[1]}人参加 #{@member_status[0]}人未回答）" %></td>
+        <td class="item_data">
+          <% if @party.party_status == '1' %>
+            <% form_tag :action => :update_participates, :id => @party.id do %>
+              <%= select_tag :member_status, options_for_select(participates_select, @my_status.to_s) %>
+              <%= submit_tag '変更' %>
+            <% end %>
+          <% else %>
+            <%= participates_type(@my_status.to_s) %>
+          <% end %>
+          <%= "（#{@party.members.count}人中 #{@member_status[1]}人参加 #{@member_status[0]}人未回答）" %></td>
       </tr>
       <tr>
         <td class="item_title">ご案内</td>
@@ -195,18 +206,19 @@ div.page_title img {
 <% if @party.party_status == "1" %>
   <!-- 参加不参加回答ページリンク -->
   <div class="participation_link">
-    <a href="#">参加・不参加を回答する</a>
+    <a href="#">参加者一覧</a>
   </div><!-- end-of .participation_link -->
 <% elsif @party.party_status == "2" %>
   <!-- メッセージ欄 -->
   <div class="box" id="box_message">
     <div class="body">この飲み会は完了しました</div>
   </div><!-- end-of #box_message -->
+<% elsif @party.party_status == "3" %>
+  <!-- メッセージ欄 -->
+  <div class="box" id="box_message">
+    <div class="body">この飲み会は中止になりました</div>
+  </div><!-- end-of #box_message -->
 <% end %>
-
-  <div class="webservice_credit">
-    <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
-  </div><!-- end-of .webservice_credit -->
 
 </div><!-- end-of #container_right -->
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130171758) do
+ActiveRecord::Schema.define(:version => 20110423175911) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
     t.integer  "parent_id"
   end
 
+  create_table "assigns", :force => true do |t|
+    t.string   "group_id"
+    t.string   "user_id"
+    t.string   "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", :force => true do |t|
     t.string "name"
     t.text   "tips"
@@ -70,6 +78,13 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
     t.integer "poll_id"
     t.string  "description"
     t.integer "votes_count", :default => 0
+  end
+
+  create_table "class_parties", :force => true do |t|
+    t.string   "class_party_name"
+    t.string   "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clippings", :force => true do |t|
@@ -171,6 +186,15 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
   add_index "friendships", ["friendship_status_id"], :name => "index_friendships_on_friendship_status_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
+  create_table "groups", :force => true do |t|
+    t.string   "group_id"
+    t.string   "group_name"
+    t.text     "comment"
+    t.string   "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "homepage_features", :force => true do |t|
     t.datetime "created_at"
     t.string   "url"
@@ -191,6 +215,15 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
     t.string   "message"
     t.integer  "user_id"
     t.datetime "created_at"
+  end
+
+  create_table "members", :force => true do |t|
+    t.string   "user_id"
+    t.integer  "party_id"
+    t.string   "member_status"
+    t.string   "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|
@@ -235,6 +268,36 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
     t.text     "body"
     t.string   "published_as", :limit => 16, :default => "draft"
     t.boolean  "page_public",                :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parties", :force => true do |t|
+    t.string   "party_name"
+    t.string   "party_status"
+    t.string   "user_id"
+    t.text     "notice"
+    t.string   "shop_id"
+    t.string   "class_api"
+    t.datetime "opendate"
+    t.datetime "plan_date"
+    t.integer  "due"
+    t.string   "class_party_id"
+    t.string   "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "partyshops", :force => true do |t|
+    t.string   "shop_id"
+    t.string   "class_api"
+    t.string   "shop_name"
+    t.text     "address"
+    t.string   "phone_number"
+    t.text     "picture_s"
+    t.text     "picture_m"
+    t.text     "picture_l"
+    t.string   "upd_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -415,6 +478,13 @@ ActiveRecord::Schema.define(:version => 20110130171758) do
     t.datetime "current_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.string   "user_name_c"
+    t.string   "user_name_k"
+    t.string   "phone_number"
+    t.string   "drink"
+    t.text     "adress"
+    t.text     "mail_adress"
+    t.string   "upd_user_id"
   end
 
   add_index "users", ["activated_at"], :name => "index_users_on_activated_at"

@@ -1,7 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < BaseController
   layout "login"
-  
+  skip_before_filter :login_check
+
   def create
     @user_session = UserSession.new(:login => params[:login], :password => params[:password], :remember_me => params[:remember_me])
 
