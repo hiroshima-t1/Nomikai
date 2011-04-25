@@ -9,4 +9,23 @@ class UsersController < BaseController
     redirect_to login_path and return false unless User.find(params[:inviter_id]).valid_invite_code?(params[:inviter_code])
   end
 
+  def update_account
+    @user             = current_user
+#    @user.attributes  = params[:user]
+    
+    puts @user.inspect
+
+    if @user.update_attributes(params[:user])
+      flash[:notice] = :your_changes_were_saved.l
+      respond_to do |format|
+        format.html {redirect_to user_path(@user)}
+        format.js
+      end      
+    else
+      respond_to do |format|
+        format.html {render :action => 'edit_account'}
+        format.js
+      end
+    end
+  end
 end
