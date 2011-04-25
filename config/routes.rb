@@ -8,9 +8,11 @@ ActionController::Routing::Routes.draw do |map|
     :party_detail => :any,
     :completed_party => :any,
     :complete => :post
-  }
+  }, :member => [:members]
 
   map.connect "shop_search", :controller => "shop_search", :action => "index"
+  
+  map.resources :members, :only=>['update']
 
   map.resources :groups, :collection => {
     :create_groups => :any,

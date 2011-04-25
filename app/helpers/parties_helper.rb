@@ -7,6 +7,12 @@ module PartiesHelper
     return Member::PARTICIPATES_TYPE[participates.to_i]
   end
 
+  def participates_for_select_box
+    (0...Member::PARTICIPATES_TYPE.size).map do |i|
+      [Member::PARTICIPATES_TYPE[i].to_s, i.to_s]
+    end
+  end
+
   def select_tab?(tab)
     tab_no = params[:party_status].to_s
     if tab_no == '' || tab_no < '0' || tab_no > '2'

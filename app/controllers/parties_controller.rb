@@ -256,4 +256,11 @@ class PartiesController < BaseController
       format.xml  { head :ok }
     end
   end
+  
+  def members
+    @party = Party.find(params[:id], :include =>{:members=>:user})
+    if !@party.nil?
+      @members = @party.members
+    end
+  end
 end
