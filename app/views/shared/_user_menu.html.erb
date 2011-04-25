@@ -1,6 +1,6 @@
 <div id="login_user">
-<%= "ログインユーザー:" %>
-<%= link_to current_user.login, dashboard_user_path(current_user), :id => 'user-menu' %>
+<div style="text-align:left; float: left;"><%= "さあ飲みましょう、<b>#{current_user.login}</b>さん" %></div>
+<div style="text-align:right;">[ <%= link_to "登録情報", dashboard_user_path(current_user), :id => 'user-menu' %> - <%= link_to "ログアウト", logout_path %> ]</div>
 <div id='user-menu-tip'> 
   <ul> 
     <li><%= link_to :edit_profile.l, edit_user_path(current_user) %></li>
@@ -26,6 +26,5 @@
     className: 'silver',
     offset: {y:2, x:12}
     });
-</script> 
-<%= link_to "ログアウト", logout_path %>
+</script>
 </div>

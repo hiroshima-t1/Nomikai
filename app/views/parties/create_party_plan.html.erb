@@ -29,13 +29,14 @@ div.page_title img {
 #container_left {
   top:65px;
   left:30px;
-  width: 300px;
+  width: 350px;
 }/* end-of container_left */
 
 #container_right {
   top: 65px;
-  left: 350px;
-  width: 350px;
+  left: 400px;
+  width: 415px;
+  padding-bottom: 30px;
 }
 
 #party_name {
@@ -75,7 +76,7 @@ div.page_title img {
 }/* end-of box_shop .body .image_float_left */
 
 #box_shop .body .image_float_right {
-  width: 210px;
+  width: 260px;
   float: right;
 }/* end-of box_shop .body .image_float_right */
 
@@ -205,7 +206,7 @@ div.page_title img {
                         width:700, height:600, url: "/shop_search"}) ;
 
   function to_save(obj) {
-    if(!confirm('飲み会情報を一時保存します。\nメンバーにメール配信されませんが、よろしいですか？'))
+    if(!confirm('飲み会情報を保存します。\nメンバーにメール配信されませんが、よろしいですか？'))
       return false;
 
     var party_detail = document.party_detail;
@@ -316,6 +317,15 @@ div.page_title img {
     $(groupName).checked = isGroupAllMemberSelection(groupName + "_members");
   }
 
+
+  // DOMロード時の処理
+  //  メンバーの選択状況から、グループを選択
+  document.observe('dom:loaded', function() {
+    $$(".group_checkbox").each(function(group) {
+      $(group.name).checked = isGroupAllMemberSelection(group.name + "_members");
+    });
+  });
+
 //-->
 </script>
 
@@ -358,7 +368,7 @@ div.page_title img {
       <div class="radio">
          <%= form.radio_button :party_status, '1', { :id => 'status_join', :checked => (@party.party_status == '1') } %><!--
         --><label for="status_join" class="left">開催</label><!--
-       --><%= form.radio_button :party_status, '2', { :id => 'status_cancel', :checked => (@party.party_status == '2') } %><!--
+       --><%= form.radio_button :party_status, '3', { :id => 'status_cancel', :checked => (@party.party_status == '3') } %><!--
         --><label for="status_cancel" class="right">中止</label>
       </div>
   <% end %>
@@ -442,7 +452,7 @@ div.page_title img {
           </td>
           <td>
             <%= form.select :class_party_id,
-                            ClassParty.all.collect { |cp| [cp.class_party_name, cp.id] },
+                            ClassParty.find(:all, :order => 'id').collect { |cp| [cp.class_party_name, cp.id] },
                             :selected => @party.class_party_id
             %>
           </td>
@@ -467,7 +477,7 @@ div.page_title img {
           <tbody class="tbody_group">
           <tr class="member_group">
             <td>
-              <%= check_box_tag "group_" + group.id.to_s, group.id.to_s, false, {:onclick => 'onGroupClick(this);'} %>
+              <%= check_box_tag "group_" + group.id.to_s, group.id.to_s, false, {:onclick => 'onGroupClick(this);', :class => 'group_checkbox'} %>
               <label for="group_<%= group.id.to_s %>"><%= group.group_name %></label>
             </td>
           </tr>
@@ -500,13 +510,6 @@ div.page_title img {
     <a class="rollover_link" id="link_save" href="/parties/save/<%= @party.id %>" onclick="return to_save(this)">保存</a>
     <a class="rollover_link" id="link_confirm" href="/parties/confirm_party_plan/<%= @party.id %>" onclick="return to_confirm(this)">確認</a>
   </div><!-- end-of #box_submit -->
-
-  <div class="webservice_credit">
-    <br /><br />
-    <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
-    <br /><br />
-  </div>
-
 
 </div><!-- end-of #container_right -->
 

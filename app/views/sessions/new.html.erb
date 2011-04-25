@@ -1,0 +1,37 @@
+<div class="main" style="position: relative; top: 0px; left: 0px;">
+<div class="container" id="container_login">
+  <div class='box'>
+    <div class="title">ログイン</div>
+    <div class="body">
+      <% form_tag({:controller => :sessions}, {:class => "MainForm", :method => :post, :name => "login"}) do %>
+        <div class='sub_title'>ユーザ名</div>
+        <div><input id="login" name="login" size="35" type="text" /></div>
+        <p></p>
+        <div class='sub_title'>パスワード</div>
+        <div><input id="password" name="password" size="35" type="password" /></div>
+
+        <fieldset>
+          <label for='remember_me'>
+            <input id="remember_me" name="remember_me" type="checkbox" value="1" />
+            ログイン状態を保持する
+          </label>
+        </fieldset>
+
+        <center><p>
+          <input name="commit" class="" type="submit" value="ログイン" style="display:none;" />
+          <a class="rollover_link" id="link_submit" onclick="document.login.submit();">ログイン</a>
+        </p></center>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container" id="container_news">
+  <div class="box" id="box_news">
+    <div class="title">更新履歴</div>
+    <div class="body">
+      <p>・2011/x/x<br />
+        飲み会管理 β版オープン</p>
+    </div>
+  </div>
+</div>
+</div>

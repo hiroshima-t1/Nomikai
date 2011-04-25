@@ -2,8 +2,6 @@
 <!--
 
 html * {
-  margin: 0px;
-  padding: 0px;
   font-family: meiryo, arial, "MS Gothic", Gothic;
 }
 
@@ -27,9 +25,10 @@ div.page_title img {
 
 div.party_container {
   position: absolute;
-  top: 80px;
+  top: 75px;
   left: 30px;
-  width: 650px;
+  width: 785px;
+  padding-bottom: 30px;
 }/* end-of div.party_container */
 
 div.party_select_tab {
@@ -170,6 +169,13 @@ div.page_link a:hover {
 function tab_click(tab) {
   document.tab.submit();
 }
+
+// DOMロード時の処理
+//  メンバーの選択状況から、グループを選択
+document.observe('dom:loaded', function() {
+  $("tab_<%= @party_status.to_s %>").checked = true;
+});
+
 //-->
 </script>
 
@@ -191,12 +197,12 @@ function tab_click(tab) {
   <div class="party_select_tab">
     <div class="radio">
       <% form_for :party, :url => { :action => :index }, :html => { :method => :get, :name => :tab } do %>
-      <%= radio_button_tag(:party_status, '1', select_tab?('1'), { :class => 'radio', :id => 'tab_now', :onclick => 'tab_click(this)' }) %><!--
-      --><label for="tab_now" class="left">飲み会情報</label><!--
-   --><%= radio_button_tag(:party_status, '2', select_tab?('2'), { :class => 'radio', :id => 'tab_old', :onclick => 'tab_click(this)' }) %><!--
-      --><label for="tab_old" class="middle">過去の飲み会</label><!--
-   --><%= radio_button_tag(:party_status, '0', select_tab?('0'), { :class => 'radio', :id => 'tab_notyet', :onclick => 'tab_click(this)' }) %><!--
-      --><label for="tab_notyet" class="right">未配信の飲み会</label>
+      <%= radio_button_tag(:party_status, '1', select_tab?('1'), { :class => 'radio', :id => "tab_1", :onclick => 'tab_click(this)' }) %><!--
+      --><label for="tab_1" class="left">飲み会情報</label><!--
+   --><%= radio_button_tag(:party_status, '2', select_tab?('2'), { :class => 'radio', :id => 'tab_2', :onclick => 'tab_click(this)' }) %><!--
+      --><label for="tab_2" class="middle">過去・中止</label><!--
+   --><%= radio_button_tag(:party_status, '0', select_tab?('0'), { :class => 'radio', :id => 'tab_0', :onclick => 'tab_click(this)' }) %><!--
+      --><label for="tab_0" class="right">未配信</label>
       <% end %>
     </div>
   </div><!-- end-of .party_select_tab -->
@@ -211,8 +217,8 @@ function tab_click(tab) {
         <tr>
           <td colspan="2" class="party_name"><%=h party.party_name %></td>
           <td class="participation" rowspan="2">
-            <%= image_tag participates_image party.members[0].member_status %>
-            <%= link_to '詳細を見る', {:action => 'party_detail', :id => party.id} -%>
+            <%= image_tag participates_image(party.party_status, party.members[0].member_status) %>
+            <%= link_to "詳細を見る", {:action => 'party_detail', :id => party.id} -%>
           </td>
         </tr>
         <tr>
@@ -255,10 +261,6 @@ function tab_click(tab) {
     </div><!-- end-of .page_link -->
 
   </div><!-- end-of .party_list -->
-
-  <div class="webservice_credit">
-    <a href="http://webservice.recruit.co.jp/"><img src="http://webservice.recruit.co.jp/banner/hotpepper-m.gif" alt="ホットペッパー Webサービス" width="88" height="35" border="0" title="ホットペッパー Webサービス"></a>
-  </div>
 
 </div><!-- end-of .party_container -->
 

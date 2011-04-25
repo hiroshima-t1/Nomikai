@@ -11,19 +11,27 @@ class PartiesController < BaseController
     @user        = current_user
     @shops       = []
     conditions   = {}
-    party_status = params[:party_status] || "1"
+    @party_status = params[:party_status]
+    @party_status = 1 if @party_status.to_s == ""
 
     # ユーザが招待されているパーティを検索
-    conditions[:include]       =  :party
-    conditions[:conditions]    = []
-    conditions[:conditions][0] =  "members.user_id = ?"
-    conditions[:conditions][0] << " and parties.party_status = ?"
-    conditions[:conditions][0] << " and parties.user_id = ?" if party_status == "0"
-    conditions[:conditions]    << @user.id
-    conditions[:conditions]    << party_status
-    conditions[:conditions]    << @user.id if party_status == "0"
+    conditions    = []
+    conditions[0] =  "members.user_id = ?"
+    conditions[0] << " and parties.party_status in ('2', '3')" if @party_status == "2"
+    conditions[0] << " and parties.party_status = ?" unless @party_status == "2"
+    conditions[0] << " and members_parties.user_id = ?"
+    conditions[0] << " and parties.user_id = ?" if @party_status == "0"
+    conditions    << @user.id
+    conditions    << @party_status unless @party_status == "2"
+    conditions    << @user.id
+    conditions    << @user.id if @party_status == "0"
+
+    order         =  'parties.opendate'
+    order         << ' desc' if @party_status == "2"
     user_parties = Member.find(:all,
-                               conditions)
+                               :conditions => conditions,
+                               :include => [:party => :members],
+                               :order => order)
 
     # 一覧のページ数を計算
     @pages = (user_parties.count / PARTIES_IN_PAGE).ceil
@@ -113,6 +121,7 @@ class PartiesController < BaseController
   def save
     @user = current_user
     params[:party][:user_id] = @user.id
+    params[:assigns] = [] unless params[:assigns]
     params[:assigns] << @user.id.to_s
     @party = Party.attributes_from_params(params)
     @party.save
@@ -125,6 +134,7 @@ class PartiesController < BaseController
   def confirm_party_plan
     @user = current_user
     params[:party][:user_id] = @user.id
+    params[:assigns] = [] unless params[:assigns]
     params[:assigns] << @user.id.to_s
     @party = Party.attributes_from_params(params)
 
@@ -146,6 +156,7 @@ class PartiesController < BaseController
       @party = session[:party]
       @party.party_status = '1' if @party.party_status == '0'
       @party.save
+#      @party.send_party_notification
       session[:party] = nil
     end
 
@@ -167,6 +178,21 @@ class PartiesController < BaseController
     respond_to do |format|
       format.html
     end
+  end
+
+  def update_participates
+    if params[:id].nil?
+      redirect_to :action => :index
+      return
+    end
+
+    @user  = current_user
+    member = Member.find(:first,
+                         :conditions => {:party_id => params[:id], :user_id => @user.id})
+    member.member_status = params[:member_status]
+    member.save
+
+    redirect_to :action => :party_detail, :id => params[:id]
   end
 
   # POST /parties/complete
