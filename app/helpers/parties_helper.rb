@@ -7,13 +7,7 @@ module PartiesHelper
   def participates_type(participates)
     return Member::PARTICIPATES_TYPE[participates.to_i]
   end
-
-
-  def participates_for_select_box
-    (0...Member::PARTICIPATES_TYPE.size).map do |i|
-      [Member::PARTICIPATES_TYPE[i].to_s, i.to_s]
-    end
-
+  
   def participates_select
     return Member::PARTICIPATES_TYPE.inject(Array.new) {|ret, val| ret[ret.size] = [val, ret.size.to_s]; ret}
   end

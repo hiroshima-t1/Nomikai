@@ -67,7 +67,7 @@
     background: #ffd5d5;
   }
 </style>  
-
+<div style="position:relative; left:0; top:0;">
 <h3>アカウントの編集</h3>
 <%= error_messages_for :user %>
 <% form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do %>

@@ -1,12 +1,12 @@
 <style>
-  table#members{
-    border: 2px solid #FFCCFF;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    width: 400px;
-    font-size: 15px;
-  }
+table#members{
+  border: 2px solid #FFCCFF;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  width: 400px;
+  font-size: 15px;
+}
 div.radio label {
   width: 60px;
   height: 25px;
@@ -25,38 +25,56 @@ div.radio label.right {
   background-image: url("/images/opt_right_s.png");
 }
 
+div.member {
+  margin: 5px;
+  border: 2px solid #FFCCFF;
+  padding: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+div.member:hover {
+  border: 2px solid #FF99CC;
+  background: url("/images/highlight.png") top left repeat-x;
+  background-color: #FFCCFF;
+}/* end-of div.party:hover */
+
 </style>  
 
 <h3>参加者一覧</h3>
 
 <h4><%= @party.party_name %></h4>
-
-<table id="members">
+<div class="box">
   <% current_user_id = current_user.id %>
   <% @party.members.each do |member| %>
-    <tr>
-      <td>
-        <%= member.user.display_name %>
-      </td>  
-      <td>
-        <%= image_tag(participates_image(member.member_status),
-                      :alt => participates_type(member.member_status),
-                      :align => 'center', :border => 0) %>
-        <% if member.user.id == current_user_id %>
-          <% form_for member do |f| %>
-            <div class="radio">
-              <%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("参加").to_s %><!--
-              --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("参加").to_s, "参加", :class=>"left" %><!-->
-              --><%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("未回答").to_s %>
-              <%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("未回答").to_s, "未回答", :class=>"middle" %>
-              <%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("不参加").to_s %>
-              <%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("不参加").to_s, "不参加", :class=>"right" %>
-            </div>
-            <%= f.submit '変更' %>
-          <% end %>
-        <% end %>
-      </td>
-    </tr>
+      <div class="member">
+        <table>
+          <tr>
+            <td style="width:100px"><%= member.user.display_name %></td>
+            <td style="width:300px;">
+              <div style="text-align:center;">
+                <%= image_tag(participates_image(@party.party_status, member.member_status),
+                              :alt => participates_type(member.member_status),
+                              :align => 'center', :border => 0) %>
+                <% if member.user.id == current_user_id %>
+                  <% form_for member do |f| %>
+                    <div class="radio">
+                      <%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("参加").to_s %><!--
+                      --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("参加").to_s, "参加", :class=>"left" %><!--
+                      --><%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("未回答").to_s %><!--
+                      --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("未回答").to_s, "未回答", :class=>"middle" %><!--
+                      --><%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("不参加").to_s %><!--
+                      --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("不参加").to_s, "不参加", :class=>"right" %>
+                    </div>
+                    <%= f.submit '変更' %>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
   <% end %>
-</table>
+</div>
 

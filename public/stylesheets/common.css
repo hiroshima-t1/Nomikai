@@ -31,7 +31,7 @@ div#sidebar h2 {
 }
 
 div#content {
-    margin-left: 135px;
+    margin-left: 160px;
     width: 500px;
 }
 
@@ -129,4 +129,15 @@ h2 {
 
 #container_news #box_news {
   height: 400px;
+}
+
+#container h3 {
+  line-height: 50px;
+  height: 40px;
+  padding-left: 80px;
+  font-size: 18px;
+  font-weight: normal;
+  vertical-align: bottom;
+  background-image: url("/images/beer.png");
+  background-repeat: no-repeat;  
 }
