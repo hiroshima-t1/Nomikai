@@ -101,6 +101,28 @@ div.page_title img {
   display: table-cell;
 }/* end-of box_message .body */
 
+div.radio {
+  width: 180px;
+}
+
+div.radio label {
+  width: 60px;
+  height: 25px;
+  font-size: 16px;
+  line-height: 21px;
+}
+div.radio label.left {
+  background-image: url("/images/opt_left_s.png");
+}
+
+div.radio label.middle {
+  background-image: url("/images/opt_middle_s.png");
+}
+
+div.radio label.right {
+  background-image: url("/images/opt_right_s.png");
+}
+
 -->
 </style>
 
@@ -186,12 +208,19 @@ div.page_title img {
         <td class="item_title">参加状況</td>
         <td class="item_data">
           <% if @party.party_status == '1' %>
-            <% form_tag :action => :update_participates, :id => @party.id do %>
-              <%= select_tag :member_status, options_for_select(participates_select, @my_status.to_s) %>
-              <%= submit_tag '変更' %>
+            <% form_for @member do |f| %>
+              <div class="radio">
+                <%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("参加").to_s %><!--
+                --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("参加").to_s, "参加", :class=>"left" %><!--
+                --><%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("未回答").to_s %><!--
+                --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("未回答").to_s, "未回答", :class=>"middle" %><!--
+                --><%= f.radio_button :member_status, Member::PARTICIPATES_TYPE.index("不参加").to_s %><!--
+                --><%= f.label "member_status_" + Member::PARTICIPATES_TYPE.index("不参加").to_s, "不参加", :class=>"right" %>
+                <center><%= f.submit '変更' %></center>
+              </div>
             <% end %>
           <% else %>
-            <%= participates_type(@my_status.to_s) %>
+            <%= participates_type(@member.member_status.to_s) %>
           <% end %>
           <%= "（#{@party.members.count}人中 #{@member_status[1]}人参加 #{@member_status[0]}人未回答）" %></td>
       </tr>
@@ -206,7 +235,7 @@ div.page_title img {
 <% if @party.party_status == "1" %>
   <!-- 参加不参加回答ページリンク -->
   <div class="participation_link">
-    <a href="#">参加者一覧</a>
+    <%= link_to "参加者一覧", members_party_path(@party) %>
   </div><!-- end-of .participation_link -->
 <% elsif @party.party_status == "2" %>
   <!-- メッセージ欄 -->

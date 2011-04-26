@@ -7,6 +7,7 @@ class MembersController < BaseController
     else
       flash[:notice] = 'Error'
     end
-    redirect_to :controller=>'parties', :action => 'members', :id=>@member.party_id
+#    redirect_to :controller=>'parties', :action => 'members', :id=>@member.party_id
+    redirect_to(:back)
   end
 end

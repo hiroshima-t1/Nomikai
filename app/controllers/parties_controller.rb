@@ -109,8 +109,8 @@ class PartiesController < BaseController
       member_status
     end
 
-    @my_status = Member.find(:first,
-                             :conditions => {:party_id => @party.id, :user_id => @user.id}).member_status
+    @member = Member.find(:first,
+                          :conditions => {:party_id => @party.id, :user_id => @user.id})
 
     respond_to do |format|
       format.html
