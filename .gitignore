@@ -4,3 +4,7 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 public/plugin_assets/community_engine/
+
+/public/images/Thumbs.db
+/public/images/calendar_date_select/Thumbs.db
+/public/images/menu/Thumbs.db
