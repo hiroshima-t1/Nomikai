@@ -285,8 +285,15 @@ class PartiesController < BaseController
   
   def members
     @party = Party.find(params[:id], :include =>{:members=>:user})
-    if !@party.nil?
-      @members = @party.members
+    @members = @party.members
+    @members.sort! do |a, b|
+      if a.user_id == @party.user_id
+        -1
+      elsif b.user_id == @party.user_id
+        1
+      else
+        a.user_id <=> b.user_id
+      end
     end
   end
 end
