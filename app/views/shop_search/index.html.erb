@@ -68,7 +68,7 @@ var shop_data = [];
                 div = div.replace("@sub_genre_name", (this.sub_genre && this.sub_genre.name) || empty);
                 div = div.replace("@shop_name", this.name || empty);
                 div = div.replace("@photo_url", (this.photo && this.photo.pc && this.photo.pc.m) || empty);
-                div = div.replace(/@url_pc/g, (this.pc && this.urls.pc) || empty);
+                div = div.replace(/@url_pc/g, (this.urls && this.urls.pc) || empty);
                 ol.append(jQuery(div));
             });
             ruir.append( ol );
