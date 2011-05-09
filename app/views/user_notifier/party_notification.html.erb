@@ -1,4 +1,14 @@
---------------
-<%= @user.login %>(<%= @user.email %>)
+<%= @user.display_name %>さん(<%= @user.email %>)
 
-<%= @message %>
+<%= @party.notice %>
+
+----------------------------------------------
+<%= @party.party_name %>
+<%= "幹事：#{@party.user.display_name}"%>(<%= @party.user.email %>)
+<%= "日時：#{@party_date}" %>
+<%= "場所：#{@shop_name}"%>
+<%= "住所：#{@shop_address}"%>
+<%= "URL：#{@shop_url}"%>
+<%= "会費：#{number_with_delimiter(@party.due)}円"%><%= @class_party %>
+----------------------------------------------
+詳しくはこちら→<%= @party_detail_url %>
