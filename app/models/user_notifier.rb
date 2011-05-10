@@ -3,7 +3,7 @@ class UserNotifier < ActionMailer::Base
   def party_notification(user, party, shop)
     setup_sender_info
     @recipients  = "#{user.email}"
-    @subject     = "飲み会開催通知"
+    @subject     = "【飲み会のお知らせ】" + party.party_name
     @sent_on     = Time.now
     @body[:user] = user
     @body[:party] = party
