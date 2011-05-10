@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
     :completed_party => :any,
     :complete => :post,
     :update_participates => :post
-  }, :member => [:members]
+  }, :member => [:members, :party_detail]
 
   map.connect "shop_search", :controller => "shop_search", :action => "index"
   

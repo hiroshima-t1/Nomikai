@@ -13,6 +13,6 @@ class UserNotifier < ActionMailer::Base
     @body[:shop_address] = shop.nil? ? "お店情報がありません" : shop.address
     @body[:shop_url] = shop.nil? ? "お店情報がありません" : shop.urls.pc
     @body[:class_party] =  party.class_party.nil? ? "" : "(#{party.class_party.class_party_name})"
-    @body[:party_detail_url] = url_for :controller=>'party', :action=>'party_detail', :id=>party, :only_path => false
+    @body[:party_detail_url] = party_detail_party_path(party, :only_path=>false)
   end
 end
