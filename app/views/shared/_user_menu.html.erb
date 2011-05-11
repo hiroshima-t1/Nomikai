@@ -1,5 +1,5 @@
 <div id="login_user">
-<div style="text-align:left; float: left;"><%= "さあ飲みましょう、<b>#{current_user.login}</b>さん" %></div>
+<div style="text-align:left; float: left;"><%= "さあ飲みましょう、<b>#{current_user.display_name}</b>さん" %></div>
 <div style="text-align:right;">[ <%= link_to "登録情報", dashboard_user_path(current_user), :id => 'user-menu' %> - <%= link_to "ログアウト", logout_path %> ]</div>
 <div id='user-menu-tip'> 
   <ul> 

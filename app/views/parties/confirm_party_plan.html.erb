@@ -209,7 +209,7 @@ div.page_title img {
     <div class="body">
       <table border="0" cellspacing="0" cellpadding="0">
         <% for member in @party.members -%>
-        <tr><td><%=h member.user.login %></td></tr>
+        <tr><td><%=h member.user.display_name %></td></tr>
         <% end -%>
       </table>
     </div>

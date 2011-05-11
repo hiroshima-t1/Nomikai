@@ -156,7 +156,7 @@ module PartiesHelper
 
     tag = ""
     tag << input_tag % [group.id, assign.user_id, assign.user_id, option]
-    tag << label_tag % [group.id, assign.user_id, assign.user.login]
+    tag << label_tag % [group.id, assign.user_id, assign.user.display_name]
     tag
   end
 
