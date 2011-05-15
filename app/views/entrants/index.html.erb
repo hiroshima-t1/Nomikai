@@ -209,7 +209,7 @@ function abc() {
               <% for entrant in ents -%>
               <tr>
                 <td class="item_title">ユーザ</td>
-                <td class="item_data"><%=h entrant.user.login %></td>
+                <td class="item_data"><%=h entrant.user.display_name %></td>
                 <td  class="">
                   <%=
                   if @user.upd_user_id == entrant.user.upd_user_id then
