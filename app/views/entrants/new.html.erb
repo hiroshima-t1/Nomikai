@@ -250,7 +250,7 @@ div.page_title img {
   <div class="box" id="box_group_name">
     <div class="title">ユーザ</div>
     <div class="body">
-      <%= select( "entrant", "user_id", User.find(:all).collect{|i| [ i.login, i.id ] } )%>
+      <%= select( "entrant", "user_id", User.find(:all).collect{|i| [ i.display_name, i.id ] } )%>
     </div>
   </div><!-- end-of #box_group_name -->
 
