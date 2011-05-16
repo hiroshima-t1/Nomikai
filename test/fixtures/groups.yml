@@ -3,11 +3,27 @@
 data1:
   id: 1
   group_id: 1
-  group_name: "IT研究会　お酒チーム"
-  upd_user_id: 1
+  group_name: "モンハン　チーム"
+  comment: 骨付き肉とお風呂大好き
+  upd_user_id: 13
 
 data2:
   id: 2
   group_id: 2
-  group_name: "ＩＴ研究会　カクテルチーム"
-  upd_user_id: 1
+  group_name: "けいおん！！　チーム"
+  comment: うんたん
+  upd_user_id: 7
+
+data3:
+  id: 3
+  group_id: 3
+  group_name: "モノポリー　チーム"
+  comment: 悪徳不動産の集まり
+  upd_user_id: 4
+
+data4:
+  id: 4
+  group_id: 4
+  group_name: "むっつり　チーム"
+  comment: ****(放送コードに引っかかりました)
+  upd_user_id: 7
