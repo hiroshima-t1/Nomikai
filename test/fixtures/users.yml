@@ -1,0 +1,365 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+kajiyama:
+  id: 1
+  login: kajiyama
+  email: kajiyama@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 梶山 真治
+  user_name_k: カジヤマ シンジ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 東京のどこか
+  mail_adress: kajiyama@example.com
+  upd_user_id: 1
+
+shimooka:
+  id: 2
+  login: shimooka
+  email: shimooka@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 下岡 宏彰
+  user_name_k: シモオカ ヒロアキ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 岡山のどこか
+  mail_adress: shimooka@example.com
+  upd_user_id: 2
+
+seike:
+  id: 3
+  login: seike
+  email: seike@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 清家 奈々
+  user_name_k: セイケ ナナ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 横川のへん
+  mail_adress: seike@example.com
+  upd_user_id: 3
+
+nasu:
+  id: 4
+  login: nasu
+  email: nasu@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 那須 秀男
+  user_name_k: ナス ヒデオ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 福山のへん
+  mail_adress: nasu@example.com
+  upd_user_id: 4
+
+matsubara:
+  id: 5
+  login: matsubara
+  email: matsubara@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 松原 弘明
+  user_name_k: マツバラ ヒロアキ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 本郷のへん
+  mail_adress: matsubara@example.com
+  upd_user_id: 5
+
+miyoshi:
+  id: 6
+  login: miyoshi
+  email: miyoshi@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 三好 俊光
+  user_name_k: ミヨシ トシミツ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 福山のへん
+  mail_adress: miyoshi@example.com
+  upd_user_id: 6
+
+murakami:
+  id: 7
+  login: murakami
+  email: murakami@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 村上 雄樹
+  user_name_k: ムラカミ ユウキ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 佐伯区のへん
+  mail_adress: murakami@example.com
+  upd_user_id: 7
+
+moutarou:
+  id: 8
+  login: murata
+  email: murata@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 村田 孟太郎
+  user_name_k: ムラタ モウタロウ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 南区のへん
+  mail_adress: murata@example.com
+  upd_user_id: 8
+
+yakushiji:
+  id: 9
+  login: yakushiji
+  email: yakushiji@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 薬師寺 大哲
+  user_name_k: ヤクシジ ダイテツ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: ソレイユのへん
+  mail_adress: yakushiji@example.com
+  upd_user_id: 9
+
+yamahira:
+  id: 10
+  login: yamahira
+  email: yamahira@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 山平 辰哉
+  user_name_k: ヤマヒラ タツヤ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 三菱重工のへん
+  mail_adress: yamahira@example.com
+  upd_user_id: 10
+
+okamoto:
+  id: 11
+  login: okamoto
+  email: okamoto@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 岡本 侯子
+  user_name_k: オカモト キミコ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: オタフクのへん
+  mail_adress: okamoto@example.com
+  upd_user_id: 11
+
+itou:
+  id: 12
+  login: itou
+  email: itou@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 伊藤 寛治
+  user_name_k: イトウ ヒロハル
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 観音のへん
+  mail_adress: itou@example.com
+  upd_user_id: 12
+
+katou:
+  id: 13
+  login: katou
+  email: katou@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: 加藤 健史
+  user_name_k: カトウ ケンシ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 西広島のへん
+  mail_adress: katou@example.com
+  upd_user_id: 13
