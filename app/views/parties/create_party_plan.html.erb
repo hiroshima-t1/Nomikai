@@ -483,10 +483,10 @@ div.page_title img {
           </tr>
           </tbody>
           <tbody id='<%= "group_" + group.id.to_s + "_members" %>' class="tbody_member">
-          <% for assign in group.assigns %>
+          <% for entrant in group.entrants %>
             <tr>
               <td>
-                <%= member_check_box_tag group, assign, {:onclick => "onMemberClick(this, 'group_#{group.id.to_s}');"} %>
+                <%= member_check_box_tag group, entrant, {:onclick => "onMemberClick(this, 'group_#{group.id.to_s}');"} %>
               </td>
             </tr>
           <% end -%>

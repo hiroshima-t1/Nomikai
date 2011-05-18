@@ -58,7 +58,7 @@ class PartiesController < BaseController
         @party = Party.find(party_id,
                             :conditions => {:user_id => @user.id},
                             :include => [:members => :user,
-                                         :user => {:groups => {:assigns => :user}}])
+                                         :user => {:groups => {:entrants => :user}}])
 
       else
         @party = Party.new
@@ -121,8 +121,8 @@ class PartiesController < BaseController
   def save
     @user = current_user
     params[:party][:user_id] = @user.id
-    params[:assigns] = [] unless params[:assigns]
-    params[:assigns] << @user.id.to_s
+    params[:entrants] = [] unless params[:entrants]
+    params[:entrants] << @user.id.to_s
     @party = Party.attributes_from_params(params)
     @party.save
     session[:party] = nil
@@ -134,8 +134,8 @@ class PartiesController < BaseController
   def confirm_party_plan
     @user = current_user
     params[:party][:user_id] = @user.id
-    params[:assigns] = [] unless params[:assigns]
-    params[:assigns] << @user.id.to_s
+    params[:entrants] = [] unless params[:entrants]
+    params[:entrants] << @user.id.to_s
     @party = Party.attributes_from_params(params)
 
     unless @party.shop_id.to_s == ""

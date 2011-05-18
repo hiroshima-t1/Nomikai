@@ -15,9 +15,9 @@ class Member < ActiveRecord::Base
     "不参加"
   ]
 
-  def self.create_from_assign(party_id, assign)
-    self.find(:first, :conditions => {:party_id => party_id.to_s, :user_id => assign.to_s}) ||
-      self.new({:party_id => party_id, :user_id => assign.to_s})
+  def self.create_from_entrant(party_id, entrant)
+    self.find(:first, :conditions => {:party_id => party_id.to_s, :user_id => entrant.to_s}) ||
+      self.new({:party_id => party_id, :user_id => entrant.to_s})
   end
 
 protected

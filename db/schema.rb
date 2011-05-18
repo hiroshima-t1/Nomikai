@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110423175911) do
+ActiveRecord::Schema.define(:version => 20110506083907) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
   end
 
   create_table "assigns", :force => true do |t|
-    t.string   "group_id"
-    t.string   "user_id"
-    t.string   "upd_user_id"
+    t.integer  "group_id",    :limit => 255
+    t.integer  "user_id",     :limit => 255
+    t.integer  "upd_user_id", :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
 
   create_table "class_parties", :force => true do |t|
     t.string   "class_party_name"
-    t.string   "upd_user_id"
+    t.integer  "upd_user_id",      :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -136,6 +136,14 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
     t.string "name"
   end
 
+  create_table "entrants", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "upd_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -187,10 +195,10 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
   create_table "groups", :force => true do |t|
-    t.string   "group_id"
+    t.integer  "group_id",    :limit => 255
     t.string   "group_name"
     t.text     "comment"
-    t.string   "upd_user_id"
+    t.integer  "upd_user_id", :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -218,10 +226,10 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
   end
 
   create_table "members", :force => true do |t|
-    t.string   "user_id"
+    t.integer  "user_id",       :limit => 255
     t.integer  "party_id"
     t.string   "member_status"
-    t.string   "upd_user_id"
+    t.integer  "upd_user_id",   :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -275,15 +283,15 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
   create_table "parties", :force => true do |t|
     t.string   "party_name"
     t.string   "party_status"
-    t.string   "user_id"
+    t.integer  "user_id",        :limit => 255
     t.text     "notice"
     t.string   "shop_id"
     t.string   "class_api"
     t.datetime "opendate"
     t.datetime "plan_date"
     t.integer  "due"
-    t.string   "class_party_id"
-    t.string   "upd_user_id"
+    t.integer  "class_party_id", :limit => 255
+    t.integer  "upd_user_id",    :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -297,7 +305,7 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
     t.text     "picture_s"
     t.text     "picture_m"
     t.text     "picture_l"
-    t.string   "upd_user_id"
+    t.integer  "upd_user_id",  :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -449,31 +457,31 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
     t.datetime "updated_at"
     t.string   "persistence_token"
     t.text     "stylesheet"
-    t.integer  "view_count",                           :default => 0
-    t.boolean  "vendor",                               :default => false
+    t.integer  "view_count",                            :default => 0
+    t.boolean  "vendor",                                :default => false
     t.string   "activation_code",        :limit => 40
     t.datetime "activated_at"
     t.integer  "state_id"
     t.integer  "metro_area_id"
     t.string   "login_slug"
-    t.boolean  "notify_comments",                      :default => true
-    t.boolean  "notify_friend_requests",               :default => true
-    t.boolean  "notify_community_news",                :default => true
+    t.boolean  "notify_comments",                       :default => true
+    t.boolean  "notify_friend_requests",                :default => true
+    t.boolean  "notify_community_news",                 :default => true
     t.integer  "country_id"
-    t.boolean  "featured_writer",                      :default => false
+    t.boolean  "featured_writer",                       :default => false
     t.datetime "last_login_at"
     t.string   "zip"
     t.date     "birthday"
     t.string   "gender"
-    t.boolean  "profile_public",                       :default => true
-    t.integer  "activities_count",                     :default => 0
-    t.integer  "sb_posts_count",                       :default => 0
+    t.boolean  "profile_public",                        :default => true
+    t.integer  "activities_count",                      :default => 0
+    t.integer  "sb_posts_count",                        :default => 0
     t.datetime "sb_last_seen_at"
     t.integer  "role_id"
     t.string   "single_access_token"
     t.string   "perishable_token"
-    t.integer  "login_count",                          :default => 0
-    t.integer  "failed_login_count",                   :default => 0
+    t.integer  "login_count",                           :default => 0
+    t.integer  "failed_login_count",                    :default => 0
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.string   "current_login_ip"
@@ -484,7 +492,7 @@ ActiveRecord::Schema.define(:version => 20110423175911) do
     t.string   "drink"
     t.text     "adress"
     t.text     "mail_adress"
-    t.string   "upd_user_id"
+    t.integer  "upd_user_id",            :limit => 255
   end
 
   add_index "users", ["activated_at"], :name => "index_users_on_activated_at"

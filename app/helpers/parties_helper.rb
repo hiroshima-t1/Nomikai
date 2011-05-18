@@ -143,11 +143,11 @@ module PartiesHelper
     options_for_select minutes, default_minute.to_s
   end
 
-  def member_check_box_tag(group, assign, options = {})
-    input_tag = "<input type='checkbox' name='assigns[]' id='group_%s_assign_%s' value='%s' %s>"
-    label_tag = "<label for='group_%s_assign_%s'>%s</label>"
+  def member_check_box_tag(group, entrant, options = {})
+    input_tag = "<input type='checkbox' name='entrants[]' id='group_%s_entrant_%s' value='%s' %s>"
+    label_tag = "<label for='group_%s_entrant_%s'>%s</label>"
 
-    party_member = @party.members.select{|member| member.user_id == assign.user_id}[0]
+    party_member = @party.members.select{|member| member.user_id == entrant.user_id}[0]
     option = ("checked='checked'" unless party_member.nil?) || ""
 
     options.each_pair do |key, value|
@@ -155,8 +155,8 @@ module PartiesHelper
     end
 
     tag = ""
-    tag << input_tag % [group.id, assign.user_id, assign.user_id, option]
-    tag << label_tag % [group.id, assign.user_id, assign.user.display_name]
+    tag << input_tag % [group.id, entrant.user_id, entrant.user_id, option]
+    tag << label_tag % [group.id, entrant.user_id, entrant.user.display_name]
     tag
   end
 

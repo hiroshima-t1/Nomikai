@@ -33,13 +33,13 @@ class Party < ActiveRecord::Base
     end
   end
 
-  def create_members_from_params(assigns)
-    unless assigns.nil?
-      assigns.each do |assign|
-        members << Member.create_from_assign(id, assign)
+  def create_members_from_params(entrants)
+    unless entrants.nil?
+      entrants.each do |entrant|
+        members << Member.create_from_entrant(id, entrant)
       end
       members.each do |member|
-        member.destroy if assigns.index(member.user_id.to_s).nil?
+        member.destroy if entrants.index(member.user_id.to_s).nil?
       end
     end
   end
@@ -68,8 +68,8 @@ class Party < ActiveRecord::Base
                             ).strftime("%Y/%m/%d %H:%M:%S")
     party.attributes = attributes
 
-    assigns = params[:assigns] || []
-    party.create_members_from_params(params[:assigns])
+    entrants = params[:entrants] || []
+    party.create_members_from_params(params[:entrants])
 #    party.create_shop_from_params(params[:shop])
 
     party
