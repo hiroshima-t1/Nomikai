@@ -37,7 +37,7 @@ div.party_select_tab {
   margin-left: 15px;
 }/* end-of div.party_select_tab */
 
-div.group_list {
+div.entrant_list {
   border: 2px solid #FF99CC;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -75,7 +75,7 @@ div.radio label.right {
   z-index: 1;
 }/* end-of div.radio label.right */
 
-div.group {
+div.entrant {
   width:95%;
   margin-top: 10px;
   border: 2px solid #FFCCFF;
@@ -185,52 +185,47 @@ function abc() {
     <table border="0" cellpadding="0" cellspacing="0">
       <tr valign="bottom">
         <td></td>
-        <td>グループ 一覧</td>
+        <td>所属 一覧</td>
       </tr>
     </table>
   </div><!-- end-of .page_title -->
 
-  <!-- グループリスト -->
-  <div class="group_list" id="group_list">
-    <!-- グループ -->
+  <!-- 所属リスト -->
+    <!-- 所属 -->
+    <% i = 0 -%>
     <% for group in @groups -%>
-    <div class="group">
-      <table border="0" cellpadding="0" cellspacing="0" class="detail">
-        <tr>
-          <td class="item_title">グループ名</td>
-          <td class="item_data"><%=h group.group_name %></td>
-        </tr>
-        <tr>
-          <td class="item_title">コメント</td>
-          <td class="item_data"><%=h group.comment %></td>
-        </tr>
-        <tr>
-          <td class="item_title">作成者</td>
-          <td class="item_data"><%=h group.user.display_name %></td>
-        </tr>
-        <tr>
-          <td  class="item_title" colspan="2">
-            <%=
-            if @user.upd_user_id == group.user.upd_user_id then
-              link_to '更新', edit_group_path(group)
-            end
-            %>
-            <%=
-            if @user.upd_user_id == group.user.upd_user_id then
-              link_to '削除', group, :confirm => 'グループを削除します。よろしいですか?', :method => :delete
-            end
-            %>
-          </td>
-        </tr>
-      </table>
-    </div><!-- end-of .party -->
+    <div class="entrant_list" id="entrant_list">
+      <div class="group">
+        <table border="0" cellpadding="0" cellspacing="0" class="detail">
+          <tr>
+            <td class="item_title">グループ</td>
+            <td class="item_data"><%=h group.group_name %></td>
+            <td></td>
+          </tr>
+
+          <% unless @entranlist.nil? %>
+            <% ents = @entranlist[i] -%>
+            <% unless ents.nil? %>
+              <% for entrant in ents -%>
+              <tr>
+                <td class="item_title">ユーザ</td>
+                <td class="item_data"><%=h entrant.user.display_name %></td>
+                <td  class="">
+                  <%=
+                  if @user.upd_user_id == entrant.user.upd_user_id then
+                    link_to '削除', entrant, :confirm => '所属を削除します。よろしいですか?', :method => :delete
+                  end
+                  %>
+                </td>
+              </tr>
+              <% end -%>
+            <% end -%>
+        <% end -%>
+        </table>
+      </div><!-- end-of .party -->
+    </div>
+    <br/>
+    <% i = i + 1 -%>
     <% end -%>
-
-        <!-- ページリンク -->
-    <div class="page_link">
-      <%= page_link_tags %>
-    </div><!-- end-of .page_link -->
-
-</div>
 
 </div>

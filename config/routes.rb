@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
     :completed_party => :any,
     :complete => :post,
     :update_participates => :post
-  }, :member => [:members]
+  }, :member => [:members, :party_detail]
 
   map.connect "shop_search", :controller => "shop_search", :action => "index"
   
@@ -17,13 +17,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups, :collection => {
     :create_groups => :any,
-    :save => :post,
-    :confirm_party_plan => :post,
-    :registration_party_plan => :post,
-    :party_detail => :any,
-    :completed_party => :any,
-    :complete => :post,
+    :save => :post
     }
+
+  map.resources :entrants, :collection => {
+    :create_entrants => :any,
+    :save => :post
+    }
+
 
   map.routes_from_plugin :community_engine
 

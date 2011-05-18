@@ -1,0 +1,18 @@
+<p>
+  <b>Group:</b>
+  <%=h @entrant.group_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @entrant.user_id %>
+</p>
+
+<p>
+  <b>Upd user:</b>
+  <%=h @entrant.upd_user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_entrant_path(@entrant) %> |
+<%= link_to 'Back', entrants_path %>

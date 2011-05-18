@@ -33,7 +33,7 @@
     margin: 0px 5px 0px 10px;
     color: #4d4d4d;
     border: 0px;
-    background-color: #ffffff;  
+    background-color: transparent;  
   }
   #link_shop_search {
     background-image: url("/images/button_blue.png");
@@ -58,7 +58,15 @@
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         font-size: 12px;
-    }/* end-of div.party */
+    }
+    
+    div.shop:hover {
+      border: 2px solid #FF99CC;
+      background: url("/images/highlight.png") top left repeat-x;
+      background-color: #FFCCFF;
+    }/* end-of div.party:hover */
+        
+    
     div.shop h4 {
         margin: 0;
         padding: 0;

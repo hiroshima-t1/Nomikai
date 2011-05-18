@@ -1,5 +1,5 @@
 <% content_for :head do %>
-
+<%= stylesheet_link_tag "container" %>
 <%= stylesheet_link_tag "shop_search/shop_search" %>
 <script type="text/javascript">
 var shop_data = [];
@@ -68,7 +68,7 @@ var shop_data = [];
                 div = div.replace("@sub_genre_name", (this.sub_genre && this.sub_genre.name) || empty);
                 div = div.replace("@shop_name", this.name || empty);
                 div = div.replace("@photo_url", (this.photo && this.photo.pc && this.photo.pc.m) || empty);
-                div = div.replace(/@url_pc/g, (this.pc && this.urls.pc) || empty);
+                div = div.replace(/@url_pc/g, (this.urls && this.urls.pc) || empty);
                 ol.append(jQuery(div));
             });
             ruir.append( ol );
@@ -184,7 +184,7 @@ var shop_data = [];
   </div>
 </div>
 <div id="template" style="display:none">
-  <div class="shop">
+  <div class="shop box">
     <table border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td colspan="2" class="shop_name">
