@@ -1,40 +1,29 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-<<<<<<< HEAD
-<% 13.times do |x| %>
-data<%= x+1 %>:
-  id: <%= x+1 %>
-  group_id: <%= x+1 %>
-  group_name: "IT研究会 T1チーム"
-  upd_user_id: <%= x+1 %>
-
-<% end %>
-=======
 data1:
   id: 1
   group_id: 1
   group_name: "モンハン　チーム"
   comment: 骨付き肉とお風呂大好き
-  upd_user_id: 13
+  upd_user_id: 10
 
 data2:
   id: 2
   group_id: 2
   group_name: "けいおん！！　チーム"
   comment: うんたん
-  upd_user_id: 7
+  upd_user_id: 10
 
 data3:
   id: 3
   group_id: 3
   group_name: "モノポリー　チーム"
   comment: 悪徳不動産の集まり
-  upd_user_id: 4
+  upd_user_id: 10
 
 data4:
   id: 4
   group_id: 4
   group_name: "むっつり　チーム"
   comment: 実にけしからん！！
-  upd_user_id: 7
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
+  upd_user_id: 10

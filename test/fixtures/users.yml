@@ -1,59 +1,25 @@
-<<<<<<< HEAD
-kajiyama:
-  id: 1
-  login: kajiyama
-  login_slug: kajiyama
-  user_name_c: "梶山 真治"
-  email: bg855204@jp.ibm.com
-=======
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 kajiyama:
   id: 1
   login: kajiyama
   email: kajiyama@example.com
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
   description: I am friggin awesome
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at: <%= 5.days.ago.to_s :db %>
-<<<<<<< HEAD
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
-  state_id: 1
-  metro_area_id: 1
-  profile_public: true
-=======
   activated_at: <%= 5.days.ago.to_s :db %>
   activation_code:
   state_id: 1
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-<<<<<<< HEAD
-shimooka:
-  id: 2
-  login: shimooka
-  login_slug: shimooka
-  user_name_c: "下岡 宏彰"
-  email: hiroaki.shimooka@kkmiura.jp
-  description: I am happy to be here. Community rawks!
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
-  activation_code: 
-  sb_posts_count: 2
-  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
-  birthday: <%= 15.years.ago.to_s :db %>  
-=======
   user_name_c: 梶山 真治
   user_name_k: カジヤマ シンジ
   phone_number: 082-xxx-xxxx
@@ -78,26 +44,10 @@ shimooka:
   login_slug: quentin
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-<<<<<<< HEAD
-seike:
-  id: 3
-  login: seike
-  login_slug: seike
-  user_name_c: "清家 奈々"
-  email: n-seike@mty.mighty.co.jp
-  description: I am Garnett
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-=======
   user_name_c: 下岡 宏彰
   user_name_k: シモオカ ヒロアキ
   phone_number: 082-xxx-xxxx
@@ -122,44 +72,10 @@ seike:
   login_slug: quentin
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-<<<<<<< HEAD
-nasu:
-  id: 4
-  login: nasu
-  login_slug: nasu
-  user_name_c: "那須 秀男"
-  email: hideo-nasu@exa-corp.co.jp
-  description: I am all powerful
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 1
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-matsubara:
-  id: 5
-  login: matsubara
-  login_slug: matsubara
-  user_name_c: "松原 弘明"
-  email: hmatsubara@tanaka-elec.co.jp
-  description: We are the best design company in the world
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
-  activation_code: 
-  vendor: true
-  birthday: <%= 15.years.ago.to_s :db %>  
-=======
   user_name_c: 清家 奈々
   user_name_k: セイケ ナナ
   phone_number: 082-xxx-xxxx
@@ -212,158 +128,10 @@ matsubara:
   login_slug: quentin
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-<<<<<<< HEAD
-miyoshi:
-  id: 6
-  login: miyoshi
-  login_slug: miyoshi
-  user_name_c: "三好 俊光"
-  email: toshimitsu_miyoshi@hinetsystem.co.jp
-  description: I am Bruno's dad
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  metro_area_id: 4
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-murakami:
-  id: 7
-  login: murakami
-  login_slug: murakami
-  user_name_c: "村上 雄樹"
-  email: murakami@cdl-net.com
-  description: I am Ben's friend
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 30.minutes.ago.to_s :db %>
-  activated_at: <%= 10.minutes.ago.to_s :db %>  
-  metro_area_id: 5
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-murata:
-  id: 8
-  login: murata
-  login_slug: murata
-  user_name_c: "村田 孟太郎"
-  email: mmurata@tanaka-elec.co.jp
-  description: I am Such An Awesome Writer!!
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 30.minutes.ago.to_s :db %>
-  activated_at: <%= 10.minutes.ago.to_s :db %>  
-  metro_area_id: 5
-  activation_code: 
-  featured_writer: true
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-yakushiji:
-  id: 9
-  login: yakushiji
-  login_slug: yakushiji
-  user_name_c: "薬師寺 大哲"
-  email: yakushiji@kk-ecs.jp
-  description: I love pipe fitting, Hello! I'm one of the Community founders.  Thanks for checking out my profile.  If you have any questions or comments, don't hesitate to email me at founder at community dot com, or comment on my profile.
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
-  activation_code: 
-  vendor: true
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-yamahira:
-  id: 10
-  login: yamahira
-  login_slug: yamahira
-  user_name_c: "山平 辰哉"
-  email: tatsuya_yamahira@mhi.co.jp
-  description: I am a private user, which means you can't see my profile stuff unless logged in
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
-  activation_code: 
-  vendor: false
-  profile_public: false
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-okamoto:
-  id: 11
-  login: okamoto
-  login_slug: okamoto
-  user_name_c: "岡本 侯子"
-  email: kokamoto@otafuku.co.jp
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 4.days.ago.to_s :db %>
-  sb_posts_count: 2
-  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3    
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-ito:
-  id: 12
-  login: ito
-  login_slug: ito
-  user_name_c: "伊藤 寛治"
-  email: BI910802@jp.ibm.com
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 4.days.ago.to_s :db %>
-  sb_posts_count: 2
-  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3    
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-katoh:
-  id: 13
-  login: katoh
-  login_slug: katho
-  user_name_c: "加藤 健史"
-  email: KEN4@jp.ibm.com
-  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 3.days.ago.to_s :db %>
-  sb_posts_count: 0  
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
-  birthday: <%= 15.years.ago.to_s :db %>  
-  role_id: 3  
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-=======
   user_name_c: 松原 弘明
   user_name_k: マツバラ ヒロアキ
   phone_number: 082-xxx-xxxx
@@ -595,4 +363,3 @@ katou:
   adress: 西広島のへん
   mail_adress: katou@example.com
   upd_user_id: 13
->>>>>>> afe3ff22f7b0d15ee104b48f6d10464952153c09

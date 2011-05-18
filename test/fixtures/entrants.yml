@@ -1,0 +1,85 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+kajiyama:
+  id: 1
+  group_id: 4
+  user_id: 1
+  upd_user_id: 1
+
+shimooka:
+  id: 2
+  group_id: 4
+  user_id: 2
+  upd_user_id: 2
+
+seike:
+  id: 3
+  group_id: 4
+  user_id: 3
+  upd_user_id: 3
+
+nasu:
+  id: 4
+  group_id: 4
+  user_id: 4
+  upd_user_id: 4
+
+matsubara:
+  id: 5
+  group_id: 4
+  user_id: 5
+  upd_user_id: 5
+
+miyoshi:
+  id: 6
+  group_id: 4
+  user_id: 6
+  upd_user_id: 6
+
+murakami:
+  id: 7
+  group_id: 4
+  user_id: 7
+  upd_user_id: 7
+
+moutarou:
+  id: 8
+  group_id: 4
+  user_id: 8
+  upd_user_id: 8
+
+yakushiji:
+  id: 9
+  group_id: 4
+  user_id: 9
+  upd_user_id: 9
+
+yamahira:
+  id: 10
+  group_id: 4
+  user_id: 10
+  upd_user_id: 10
+
+okamoto:
+  id: 11
+  group_id: 4
+  user_id: 11
+  upd_user_id: 11
+
+itou:
+  id: 12
+  group_id: 4
+  user_id: 12
+  upd_user_id: 12
+
+katou:
+  id: 13
+  group_id: 4
+  user_id: 13
+  upd_user_id: 13
+
+matsubara:
+  id: 5
+  group_id: 4
+  user_id: 5
+  upd_user_id: 5
