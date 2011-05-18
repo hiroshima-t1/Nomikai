@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110506083907) do
+ActiveRecord::Schema.define(:version => 20110518083733) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -284,7 +284,6 @@ ActiveRecord::Schema.define(:version => 20110506083907) do
     t.string   "party_name"
     t.string   "party_status"
     t.integer  "user_id",        :limit => 255
-    t.text     "notice"
     t.string   "shop_id"
     t.string   "class_api"
     t.datetime "opendate"
