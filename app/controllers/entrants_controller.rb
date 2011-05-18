@@ -5,17 +5,14 @@ class EntrantsController < BaseController
     @user = current_user
     @groups = Group.find(:all,:order => 'group_name asc')
 
-    conditions    = []
-    conditions[0] =  "entrants.group_id = ?"
-
     i = 0
     @entranlist = []
     for group in @groups
+      conditions    = []
+      conditions[0] =  "entrants.group_id = ?"
       conditions    << group.id
       @entranlist[i] = Entrant.find(:all,
                               :conditions => conditions)
-
-      conditions.delete(conditions.size-1)
       i = i + 1
     end
 

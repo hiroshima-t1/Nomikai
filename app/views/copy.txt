@@ -1,0 +1,37 @@
+## create_party_plan.html.erb
+
+  <!-- 案内メールBOX -->
+  <div class="box" id="box_info">
+    <div class="title">案内メール</div>
+    <div class="body">
+      <%= form.text_area :notice, { :id=> 'textarea_info', :rows => nil, :cols => nil } %>
+    </div>
+  </div><!-- end-of #box_info -->
+
+
+
+## confirm_party_plan.html.erb
+
+  <!-- 案内メールBOX -->
+  <div class="box" id="box_info">
+    <div class="title">案内メール</div>
+    <div class="body">
+      <pre><%=h @party.notice %></pre>
+    </div>
+  </div><!-- end-of #box_info -->
+
+
+
+## party_detail.html.erb
+
+      <tr>
+        <td class="item_title">ご案内</td>
+        <td class="item_data"><pre><%=h @party.notice %></pre>
+        </td>
+      </tr>
+
+
+## party_notification.html.erb
+
+<%= @party.notice %>
+

@@ -20,7 +20,7 @@ seike:
 
 nasu:
   id: 4
-  group_id: 4
+  group_id: 3
   user_id: 4
   upd_user_id: 4
 
@@ -32,7 +32,7 @@ matsubara:
 
 miyoshi:
   id: 6
-  group_id: 4
+  group_id: 1
   user_id: 6
   upd_user_id: 6
 
@@ -54,12 +54,6 @@ yakushiji:
   user_id: 9
   upd_user_id: 9
 
-yamahira:
-  id: 10
-  group_id: 4
-  user_id: 10
-  upd_user_id: 10
-
 okamoto:
   id: 11
   group_id: 4
@@ -68,18 +62,12 @@ okamoto:
 
 itou:
   id: 12
-  group_id: 4
+  group_id: 2
   user_id: 12
   upd_user_id: 12
 
 katou:
   id: 13
-  group_id: 4
+  group_id: 1
   user_id: 13
   upd_user_id: 13
-
-matsubara:
-  id: 5
-  group_id: 4
-  user_id: 5
-  upd_user_id: 5
