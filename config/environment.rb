@@ -68,3 +68,12 @@ config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
   # config.i18n.default_locale = :de
 end
  require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
+
+ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :authentication => :plain,
+  :user_name => "Nomikai.ITKen",
+  :password => "nomikaih22"
+}
