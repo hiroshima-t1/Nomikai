@@ -14,7 +14,7 @@ kajiyama:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -42,7 +42,7 @@ shimooka:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -70,7 +70,7 @@ seike:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -98,7 +98,7 @@ nasu:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -126,7 +126,7 @@ matsubara:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -154,7 +154,7 @@ miyoshi:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -182,7 +182,7 @@ murakami:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -210,7 +210,7 @@ moutarou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -238,7 +238,7 @@ yakushiji:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -266,7 +266,7 @@ yamahira:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -294,7 +294,7 @@ okamoto:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -322,7 +322,7 @@ itou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -350,7 +350,7 @@ katou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 15.years.ago.strftime("%Y-%m-%d" ) %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
