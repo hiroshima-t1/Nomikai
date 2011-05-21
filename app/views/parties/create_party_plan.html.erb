@@ -204,7 +204,7 @@ div.page_title img {
 <!--
 
   var win = new Window({className: "bluelighting", title: "お店検索", top:50, left:200, 
-                        width:700, height:600, url: "/shop_search"}) ;
+                        width:700, height:550, url: "/shop_search"}) ;
 
   function to_save(obj) {
     if(!confirm('飲み会情報を保存します。\nメンバーにメール配信されませんが、よろしいですか？'))
@@ -224,7 +224,7 @@ div.page_title img {
   }
 
   function search_shop() {
-    win.show();
+    win.showCenter();
   }
 
   function clear_shop() {

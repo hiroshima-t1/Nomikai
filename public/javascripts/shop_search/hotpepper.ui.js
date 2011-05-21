@@ -385,10 +385,7 @@ Class.create( Recruit.UI.Base.Checkbox, {
             { value:'1', name:'tv',            label: 'TV・プロジェクター' },
             { value:'1', name:'lunch',         label: 'ランチあり' },
             { value:'1', name:'midnight',      label: '23時以降も営業' },
-            { value:'1', name:'midnight_meal', label: '23時以降食事OK' },
-            { value:'1', name:'english',       label: '英語メニューあり' },
-            { value:'1', name:'pet',           label: 'ペット可' },
-            { value:'1', name:'child',         label: 'お子様連れOK' }
+            { value:'1', name:'midnight_meal', label: '23時以降食事OK' }
         ];
     }
 });
