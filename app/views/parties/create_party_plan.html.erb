@@ -423,7 +423,15 @@ div.page_title img {
         <div id="shop_info_name"><%=h @shop.nil? ? "" : @shop.name %></div>
         <div id="shop_detail_area">
           <div class="image_float_left">
-            <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank" id="shop_info_url"><%= image_tag @shop.nil? ? "" : @shop.photo.pc.s, :id => "shop_image_s" %><br />お店紹介</a>
+            <a href="<%=h @shop.nil? ? "" : @shop.urls.pc %>" target="_blank" id="shop_info_url">
+              <% unless @shop.nil? %>
+                <%= image_tag @shop.photo.pc.s, :id => "shop_image_s" %>
+              <% else%>
+                <img id="shop_image_s"/>
+              <% end %>
+              <br />
+              お店紹介
+            </a>
           </div>
           <div class="image_float_right">
             <div class="sub_title">住所</div>
