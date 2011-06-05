@@ -14,7 +14,7 @@ kajiyama:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -24,7 +24,7 @@ kajiyama:
   user_name_k: カジヤマ シンジ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 東京のどこか
+  adress: どこかな？
   mail_adress: kajiyama@example.com
   upd_user_id: 1
 
@@ -42,7 +42,7 @@ shimooka:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -52,7 +52,7 @@ shimooka:
   user_name_k: シモオカ ヒロアキ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 岡山のどこか
+  adress: どこでしょう？
   mail_adress: shimooka@example.com
   upd_user_id: 2
 
@@ -70,7 +70,7 @@ seike:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -80,14 +80,14 @@ seike:
   user_name_k: セイケ ナナ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 横川のへん
+  adress: 教えてあげなくってよ
   mail_adress: seike@example.com
   upd_user_id: 3
 
 nasu:
   id: 4
   login: nasu
-  email: nasu@example.com
+  email: natsutteatsuiyone@gmail.com
   description: I am friggin awesome
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -98,7 +98,7 @@ nasu:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -108,8 +108,8 @@ nasu:
   user_name_k: ナス ヒデオ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 福山のへん
-  mail_adress: nasu@example.com
+  adress: 教えてあげないんだからねっ
+  mail_adress: natsutteatsuiyone@gmail.com
   upd_user_id: 4
 
 matsubara:
@@ -126,7 +126,7 @@ matsubara:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -136,7 +136,7 @@ matsubara:
   user_name_k: マツバラ ヒロアキ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 本郷のへん
+  adress: 行けばわかるさ
   mail_adress: matsubara@example.com
   upd_user_id: 5
 
@@ -154,7 +154,7 @@ miyoshi:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -164,7 +164,7 @@ miyoshi:
   user_name_k: ミヨシ トシミツ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 福山のへん
+  adress: 教えてあげません
   mail_adress: miyoshi@example.com
   upd_user_id: 6
 
@@ -182,7 +182,7 @@ murakami:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -192,7 +192,7 @@ murakami:
   user_name_k: ムラカミ ユウキ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 佐伯区のへん
+  adress: 上上下下左右左右BA
   mail_adress: murakami@example.com
   upd_user_id: 7
 
@@ -210,7 +210,7 @@ moutarou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -220,7 +220,7 @@ moutarou:
   user_name_k: ムラタ モウタロウ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 南区のへん
+  adress: ┐(￣ヘ￣）┌
   mail_adress: murata@example.com
   upd_user_id: 8
 
@@ -238,7 +238,7 @@ yakushiji:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -248,7 +248,7 @@ yakushiji:
   user_name_k: ヤクシジ ダイテツ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: ソレイユのへん
+  adress: ロードレーサーでいけるところ
   mail_adress: yakushiji@example.com
   upd_user_id: 9
 
@@ -266,7 +266,7 @@ yamahira:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -276,7 +276,7 @@ yamahira:
   user_name_k: ヤマヒラ タツヤ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 三菱重工のへん
+  adress: お呼びとあらば即参上！
   mail_adress: yamahira@example.com
   upd_user_id: 10
 
@@ -294,7 +294,7 @@ okamoto:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -304,7 +304,7 @@ okamoto:
   user_name_k: オカモト キミコ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: オタフクのへん
+  adress: ウフフ・・・
   mail_adress: okamoto@example.com
   upd_user_id: 11
 
@@ -322,7 +322,7 @@ itou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d") %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -332,7 +332,7 @@ itou:
   user_name_k: イトウ ヒロハル
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 観音のへん
+  adress: クラウドあるところいたうあり
   mail_adress: itou@example.com
   upd_user_id: 12
 
@@ -350,7 +350,7 @@ katou:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.strftime("%Y-%m-%d" ) %>
+  birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -360,6 +360,34 @@ katou:
   user_name_k: カトウ ケンシ
   phone_number: 082-xxx-xxxx
   drink: D
-  adress: 西広島のへん
+  adress: ギルド
   mail_adress: katou@example.com
   upd_user_id: 13
+
+test:
+  id: 14
+  login: test
+  email: test@example.com
+  description: I am friggin awesome
+  password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  user_name_c: テスト用ユーザ
+  user_name_k: テストヨウユーザ
+  phone_number: 082-xxx-xxxx
+  drink: D
+  adress: 世界のどこか
+  mail_adress: test@example.com
+  upd_user_id: 14
