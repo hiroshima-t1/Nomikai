@@ -156,7 +156,7 @@ class PartiesController < BaseController
       @party = session[:party]
       @party.party_status = '1' if @party.party_status == '0'
       @party.save
-#      @party.send_party_notification
+      @party.send_party_notification
       session[:party] = nil
     end
 
