@@ -1,8 +1,13 @@
+#AddNoticeToParty notice:text
+ruby script/generate migration AddNoticeToParty notice:text
+
+rake db:migrate
+
 ## create_party_plan.html.erb
 
-  <!-- �ē����[��BOX -->
+  <!-- 案内メールBOX -->
   <div class="box" id="box_info">
-    <div class="title">�ē����[��</div>
+    <div class="title">案内メール</div>
     <div class="body">
       <%= form.text_area :notice, { :id=> 'textarea_info', :rows => nil, :cols => nil } %>
     </div>
@@ -12,9 +17,9 @@
 
 ## confirm_party_plan.html.erb
 
-  <!-- �ē����[��BOX -->
+  <!-- 案内メールBOX -->
   <div class="box" id="box_info">
-    <div class="title">�ē����[��</div>
+    <div class="title">案内メール</div>
     <div class="body">
       <pre><%=h @party.notice %></pre>
     </div>
@@ -25,13 +30,14 @@
 ## party_detail.html.erb
 
       <tr>
-        <td class="item_title">���ē�</td>
+        <td class="item_title">ご案内</td>
         <td class="item_data"><pre><%=h @party.notice %></pre>
         </td>
       </tr>
 
 
-## party_notification.html.erb
+## user_notifier/party_notification.html.erb
+## 2行目にたす
 
-<%= @party.notice %>
+<%= @party.notice %>	
 
