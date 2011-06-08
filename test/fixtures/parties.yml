@@ -4,7 +4,7 @@ data1:
   id: 1
   party_name: "【IT研】とりあえず飲もう！会"
   party_status: 0
-  user_id: 1
+  user_id: 10
   shop_id: "J000026307"
   class_api: 1
   opendate: "2011-02-16 10:00:00"
@@ -16,7 +16,7 @@ data2:
   id: 2
   party_name: "【IT研】もう一回飲んじゃえ会"
   party_status: 1
-  user_id: 1
+  user_id: 10
   shop_id: "J000028441"
   class_api: 1
   opendate: "2011-02-26 09:30:00"
@@ -28,7 +28,7 @@ data3:
   id: 3
   party_name: "【IT研】飲み足りないぜ、みんな集まれ会"
   party_status: 2
-  user_id: 1
+  user_id: 10
   shop_id: "J000684136"
   class_api: 1
   opendate: "2011-03-05 09:30:00"
