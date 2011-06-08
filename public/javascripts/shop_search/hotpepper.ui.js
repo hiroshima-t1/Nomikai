@@ -1,3 +1,4 @@
+
 /*
  * hotpepper.ui.js - UI library for HotPepper Web Service
  * AUTHOR: Toshimasa Ishibashi iandeth [at] gmail.com
@@ -358,7 +359,6 @@ Class.create( Recruit.UI.Base.Checkbox, {
     },
     get_selections: function (){
         return [
-            { value:'1', name:'wedding',       label: 'ウェディング二次会等' },
             { value:'1', name:'course',        label: 'コースあり' },
             { value:'1', name:'free_drink',    label: '飲み放題' },
             { value:'1', name:'free_food',     label: '食べ放題' },
@@ -375,13 +375,10 @@ Class.create( Recruit.UI.Base.Checkbox, {
             { value:'1', name:'ktai',          label: '携帯電話OK' },
             { value:'1', name:'parking',       label: '駐車場あり' },
             { value:'1', name:'barrier_free',  label: 'バリアフリー' },
-            { value:'1', name:'sommelier',     label: 'ソムリエがいる' },
             { value:'1', name:'night_view',    label: '夜景がキレイ' },
             { value:'1', name:'open_air',      label: 'オープンエア' },
             { value:'1', name:'show',          label: 'ライブ・ショーあり' },
-            { value:'1', name:'equipment',     label: 'エンタメ設備' },
             { value:'1', name:'karaoke',       label: 'カラオケあり' },
-            { value:'1', name:'band',          label: 'バンド演奏可' },
             { value:'1', name:'tv',            label: 'TV・プロジェクター' },
             { value:'1', name:'lunch',         label: 'ランチあり' },
             { value:'1', name:'midnight',      label: '23時以降も営業' },
