@@ -8,9 +8,6 @@ class BaseController < ApplicationController
   end
 
   def login_check
-    if current_user.nil?
-      session[:original_uri] = request.request_uri
-      redirect_to :controller => :sessions, :action => :new
-    end
+    login_required
   end
 end

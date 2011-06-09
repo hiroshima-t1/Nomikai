@@ -1,5 +1,6 @@
 class ShopSearchController < BaseController
-	def index
+  skip_before_filter :login_check
+  def index
 		
-	end
+  end
 end

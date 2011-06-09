@@ -10,9 +10,9 @@ class UsersController < BaseController
   end
 
   def show
-    unless session[:original_uri].nil?
-      uri = session[:original_uri]
-      session[:original_uri] = nil
+    unless session[:return_to].nil?
+      uri = session[:return_to]
+      session[:return_to] = nil
       redirect_to(uri || {:controller => :parties, :action => :index})
       return
     end
