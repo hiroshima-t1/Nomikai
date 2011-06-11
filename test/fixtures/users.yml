@@ -169,7 +169,7 @@ miyoshi:
   upd_user_id: 6
 
 murakami:
-  id: 7
+  id: 10
   login: murakami
   email: murakami@example.com
   description: I am friggin awesome
@@ -253,7 +253,7 @@ yakushiji:
   upd_user_id: 9
 
 yamahira:
-  id: 10
+  id: 7
   login: yamahira
   email: yamahira@example.com
   description: I am friggin awesome
