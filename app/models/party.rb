@@ -18,7 +18,7 @@ class Party < ActiveRecord::Base
 
   # 飲み会参加者全員にメール送信
   def send_party_notification
-    members = Member.find_all_by_party_id(self.id)
+    members = Member.find_all_by_party_id(self.id, :include => "user")
     res = HotPepper.find_shop_by_id(self.shop_id)
     shop = nil
     shop = res.shop if res.found?

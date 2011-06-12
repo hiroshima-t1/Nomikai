@@ -156,7 +156,12 @@ class PartiesController < BaseController
       @party = session[:party]
       @party.party_status = '1' if @party.party_status == '0'
       @party.save
-      @party.send_party_notification
+      @party.send_party_notification do |member|
+        ret = true
+        ret = false if member.user.nil? || member.user.email.nil?
+        ret = false if member.user.email =~ /example.com$/
+        ret
+      end
       session[:party] = nil
     end
 
