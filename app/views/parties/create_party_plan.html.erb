@@ -482,7 +482,7 @@ div.page_title img {
       <div class="scroll_area" id="scroll_area_member">
         <table id="table_member" cellspacing="0" cellpadding="0">
 
-        <% for group in @party.user.groups %>
+        <% for group in @party.user.groups.sort!{|g1, g2| g1.id <=> g2.id} %>
           <tbody class="tbody_group">
           <tr class="member_group">
             <td>
@@ -508,6 +508,9 @@ div.page_title img {
 
 
 
+
+
+  
   <!-- 登録ボタンBOX -->
   <div class="box" id="box_submit">
     <a class="rollover_link" id="link_save" href="/parties/save/<%= @party.id %>" onclick="return to_save(this)">保存</a>

@@ -28,6 +28,7 @@ class PartiesController < BaseController
 
     order         =  'parties.opendate'
     order         << ' desc' if @party_status == "2"
+
     user_parties = Member.find(:all,
                                :conditions => conditions,
                                :include => [:party => :members],
