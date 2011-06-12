@@ -60,13 +60,16 @@ class PartiesController < BaseController
                             :conditions => {:user_id => @user.id},
                             :include => [:members => :user,
                                          :user => {:groups => {:entrants => :user}}])
-
+        @groups = @party.user.groups
       else
         @party = Party.new
         @party.user_id = @user.id
         @party.opendate = Time.new
+        @groups = Group.all(:conditions => {:upd_user_id => @user.id}, :order => "id")
       end
     end
+
+    @groups.sort! {|g1, g2| g1.id <=> g2.id}
 
     unless @party.shop_id.to_s == ""
       res = HotPepper.find_shop_by_id(@party.shop_id.to_s)

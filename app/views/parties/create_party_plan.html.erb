@@ -482,7 +482,7 @@ div.page_title img {
       <div class="scroll_area" id="scroll_area_member">
         <table id="table_member" cellspacing="0" cellpadding="0">
 
-        <% for group in @party.user.groups.sort!{|g1, g2| g1.id <=> g2.id} %>
+        <% for group in @groups %>
           <tbody class="tbody_group">
           <tr class="member_group">
             <td>
