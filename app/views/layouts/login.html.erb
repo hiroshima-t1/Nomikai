@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title><%= AppConfig.community_name %></title>
-<%= stylesheet_link_tag 'common' %>
-<%= stylesheet_link_tag 'container', 'rolloverlink', 'optionbutton', 'credit' %>
+<%= stylesheet_link_tag 'common', 'container', 'rolloverlink', 'optionbutton', 'credit', :cache => 'screen' %>
 <%= render :partial => "shared/scripts_and_styles" %>
 <%= yield :head %>
 </head>

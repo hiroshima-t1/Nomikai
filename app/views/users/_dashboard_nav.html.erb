@@ -1,0 +1,35 @@
+<h3><%= :dashboard.l %></h3>
+<div class="box" style="width:400px; height:160px;">
+  <div style="float:left; width:200px">
+    <div class="title"><%= :view.l %></div>
+    <ul>
+      <li><%= link_to :my_profile.l, user_path(@user)  %></li>
+      <li><%= link_to :my_blog.l, user_posts_path(@user)%></li>
+      <li><%= link_to :photo_manager.l, user_photo_manager_index_path(@user) %></li>
+      <li><%= link_to :my_clippings.l, user_clippings_path(@user) %></li>
+      <li><%= link_to :my_friends.l, accepted_user_friendships_path(@user) %></li>
+      <li><%= link_to :inbox.l, user_messages_path(@user) %></li>
+    </ul>
+  </div>
+  <div style="margin-left:200px;">  
+    <div class="title"><%= :manage.l %></div>
+    <ul>
+      <li><%= link_to :my_profile.l, edit_user_path(@user) %></li>
+      <li><%= link_to :my_account.l, edit_account_user_path(@user) %></li>
+      <li><%= link_to :my_blog_posts.l, manage_user_posts_path(@user) %></li>
+      <% if current_user.admin? %>
+        <li><%= link_to :admin_dashboard.l, admin_dashboard_path %></li>
+      <% end %>  
+    </ul>
+  </div>
+</div>
+<div style="clear:both"></div>
+<div class="box" style="width:400px">
+  <div class="title"><%= :stats.l %></div>
+  <ul>
+    <% if @user.last_login_at %>
+      <li><%= :you_last_logged_in_on.l+" #{I18n.l(@user.last_login_at, :format => :published_date)}" %>
+    <% end %>   
+    <li><%= :member_since.l+" #{I18n.l(@user.created_at, :format => :published_date)}" %></li>
+  </ul>
+</div>

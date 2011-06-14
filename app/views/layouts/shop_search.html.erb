@@ -7,14 +7,11 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title><%= AppConfig.community_name %></title>
-<%= stylesheet_link_tag "shop_search/ui.tabs" %>
-<%= stylesheet_link_tag "rolloverlink" %>
-<%= javascript_include_tag 'shop_search/jquery-1.2.3'%>
-<%= javascript_include_tag 'shop_search/jquery.form'%>
-<%= javascript_include_tag 'shop_search/ui.core' %>
-<%= javascript_include_tag 'shop_search/ui.tabs' %>
-<%= javascript_include_tag 'shop_search/recruit.ui'%>
-<%= javascript_include_tag 'shop_search/hotpepper.ui' %>
+<%= stylesheet_link_tag 'shop_search/ui.tabs', 'rolloverlink', 'container', 
+                        'shop_search/shop_search', :cache => 'shop_search' %>
+<%= javascript_include_tag 'shop_search/jquery-1.2.3', 'shop_search/jquery.form',
+                           'shop_search/ui.core',      'shop_search/ui.tabs',
+                           'shop_search/recruit.ui',   'shop_search/hotpepper.ui', :cache => 'shop_search' %>
 <%= yield :head %>
 </head>
 <body>
