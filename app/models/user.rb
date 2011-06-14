@@ -9,4 +9,11 @@ class User < ActiveRecord::Base
     return user_name_k if !user_name_k.blank?
     login
   end
+  
+  def display_gender
+    return "" if gender.blank?
+    return '男' if gender == "M"
+    return '女' if gender == "F"
+    ""
+  end
 end

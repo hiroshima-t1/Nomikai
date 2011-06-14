@@ -5,7 +5,6 @@ ActionController::Routing::Routes.draw do |map|
     :save => :post,
     :confirm_party_plan => :post,
     :registration_party_plan => :post,
-    :party_detail => :any,
     :completed_party => :any,
     :complete => :post,
     :update_participates => :post

@@ -1,12 +1,6 @@
 <style type="text/css">
 <!--
 
-html * {
-  margin: 0px;
-  padding: 0px;
-  font-family: meiryo, arial, "MS Gothic", Gothic;
-}
-
 div.main {
   position: relative;
   top: 0px;
@@ -206,7 +200,7 @@ function abc() {
           <% unless @entranlist.nil? %>
             <% ents = @entranlist[i] -%>
             <% unless ents.nil? %>
-              <% for entrant in ents -%>
+              <% for entrant in group.entrants -%>
               <tr>
                 <td class="item_title">ユーザ</td>
                 <td class="item_data"><%=h entrant.user.display_name %></td>

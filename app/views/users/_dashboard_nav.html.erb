@@ -4,26 +4,17 @@
     <div class="title"><%= :view.l %></div>
     <ul>
       <li><%= link_to :my_profile.l, user_path(@user)  %></li>
-      <li><%= link_to :my_blog.l, user_posts_path(@user)%></li>
-      <li><%= link_to :photo_manager.l, user_photo_manager_index_path(@user) %></li>
-      <li><%= link_to :my_clippings.l, user_clippings_path(@user) %></li>
-      <li><%= link_to :my_friends.l, accepted_user_friendships_path(@user) %></li>
-      <li><%= link_to :inbox.l, user_messages_path(@user) %></li>
     </ul>
   </div>
   <div style="margin-left:200px;">  
     <div class="title"><%= :manage.l %></div>
     <ul>
-      <li><%= link_to :my_profile.l, edit_user_path(@user) %></li>
-      <li><%= link_to :my_account.l, edit_account_user_path(@user) %></li>
-      <li><%= link_to :my_blog_posts.l, manage_user_posts_path(@user) %></li>
-      <% if current_user.admin? %>
-        <li><%= link_to :admin_dashboard.l, admin_dashboard_path %></li>
-      <% end %>  
+      <li><%= link_to "プロフィールの編集", edit_user_path(@user) %></li>
     </ul>
   </div>
 </div>
 <div style="clear:both"></div>
+<br />
 <div class="box" style="width:400px">
   <div class="title"><%= :stats.l %></div>
   <ul>

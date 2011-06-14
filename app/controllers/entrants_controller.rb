@@ -54,7 +54,7 @@ class EntrantsController < BaseController
   def create
     @entrant = Entrant.new(params[:entrant])
     @user = current_user
-
+      
     @entrant.upd_user_id = @user.id
 
     respond_to do |format|
