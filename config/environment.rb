@@ -62,6 +62,7 @@ config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
   # Run "rake -D time" for a list of tasks for finding time zone names.
 #  config.time_zone = 'UTC'
   config.active_record.default_timezone = :Tokyo
+  config.middleware.use Rack::Deflater
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
