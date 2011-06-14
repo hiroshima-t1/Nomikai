@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title><%= AppConfig.community_name %></title>
 <%= stylesheet_link_tag 'common', 'container', 'rolloverlink', 'optionbutton', 'credit', :cache => 'screen' %>
-<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "prototype", :cache => '_prototype' %>
 <%= yield :head %>
 </head>
 <body>
